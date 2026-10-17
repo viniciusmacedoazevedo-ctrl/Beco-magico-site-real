@@ -329,7 +329,7 @@
 
 /* Produto */
 .cena-produto {
-  --escala-final: 1.36;
+  --escala-final: 1.22;
   position: absolute;
   left: 49%;
   top: 55%;
@@ -388,6 +388,54 @@
 
 .cena-burger.oculto {
   opacity: 0;
+}
+
+/* O turbinado é mais alto (duas carnes): apoiado na mesma base, cresce para cima */
+.cena-burger--magico {
+  inset: auto auto 0 50%;
+  width: 78%;
+  height: auto;
+  translate: -50% 0;
+  transform-origin: 50% 100%;
+}
+
+/* Gota de molho que escorre do turbinado */
+.cena-gota-molho {
+  position: absolute;
+  z-index: 3;
+  left: 72%;
+  bottom: 9%;
+  width: 1.3%;
+  aspect-ratio: 0.72;
+  border-radius: 50% 50% 50% 50% / 62% 62% 40% 40%;
+  background: radial-gradient(circle at 35% 35%, #fff6e2, #e9d2a8 55%, #b98c55);
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-fase='revelado'] .cena-gota-molho {
+  animation: gota-molho 3.4s cubic-bezier(0.55, 0, 0.9, 0.5) 1.6s infinite;
+}
+
+@keyframes gota-molho {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.4);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(6px) scale(0.9, 1.2);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(90px) scale(0.85, 1.25);
+  }
 }
 
 .cena-sombra {
@@ -871,7 +919,7 @@
 
 @media (max-width: 640px) {
   .cena {
-    aspect-ratio: 10 / 11;
+    aspect-ratio: 10 / 12.4;
   }
 
   .cena-feiticeiro {
@@ -893,9 +941,9 @@
   }
 
   .cena-produto {
-    --escala-final: 1.14;
+    --escala-final: 1.08;
     left: 26%;
-    top: 30%;
+    top: 40%;
     width: 70%;
   }
 

@@ -37,6 +37,9 @@ const ROTEIRO: [Fase, number][] = [
 ]
 const TROCA_IMAGEM = 3900
 
+// Hambúrguer turbinado (mais alto que o comum: duas carnes)
+const MAGICO = { largura: 998, altura: 1198 }
+
 export function SectionAssustador() {
   const [primeira, segunda] = marca.fraseTematica.split(' ')
   const [fase, setFase] = useState<Fase>('repouso')
@@ -189,12 +192,17 @@ export function SectionAssustador() {
               <img
                 className={`cena-burger cena-burger--magico ${magico ? '' : 'oculto'}`}
                 src="/img/feitico/hamburguer-magico.webp"
-                alt={magico ? 'O mesmo hambúrguer, transformado: pão roxo, cheddar derretido e brilho mágico' : ''}
-                width={1000}
-                height={774}
+                alt={
+                  magico
+                    ? 'Hambúrguer turbinado: pão roxo, duas carnes, cheddar em dobro, bacon com cebola e molho escorrendo'
+                    : ''
+                }
+                width={MAGICO.largura}
+                height={MAGICO.altura}
                 loading="lazy"
                 decoding="async"
               />
+              <span className="cena-gota-molho" aria-hidden="true" />
               <span className="cena-sombra" aria-hidden="true" />
               <div className="cena-explosao" aria-hidden="true">
                 <span className="cena-fumaca cena-fumaca--1" />
