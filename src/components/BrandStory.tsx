@@ -1,5 +1,6 @@
 import { imagens, marca } from '../data/marca'
 import { Morcegos, type Morcego } from './Atmosfera'
+import { BotaoReservar } from './BotaoReservar'
 import { IconeLocal, IconeRelogio, IconeSeta } from './Icones'
 import './BrandStory.css'
 
@@ -75,15 +76,13 @@ export function BrandStory() {
           )}
 
           <div className="beco-acoes">
+            <BotaoReservar />
             {endereco?.mapsUrl && (
               <a className="botao" href={endereco.mapsUrl} target="_blank" rel="noopener noreferrer">
                 Como chegar
                 <IconeSeta />
               </a>
             )}
-            <a className="botao botao--fantasma" href="#localizacao">
-              Ver no mapa
-            </a>
           </div>
         </div>
       </div>

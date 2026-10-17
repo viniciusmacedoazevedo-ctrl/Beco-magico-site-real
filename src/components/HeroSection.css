@@ -253,6 +253,10 @@
   margin-top: var(--esp-6);
 }
 
+.hero-reservar {
+  min-height: 60px;
+}
+
 .hero-link {
   position: relative;
   padding-block: var(--esp-2);
@@ -427,7 +431,7 @@
     justify-content: space-between;
   }
 
-  .hero-acoes .hero-link {
-    margin-inline: auto;
+  .hero-acoes .hero-reservar {
+    flex: 1 1 100%;
   }
 }

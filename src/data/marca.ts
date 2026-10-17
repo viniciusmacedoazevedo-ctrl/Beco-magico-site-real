@@ -12,6 +12,9 @@
  */
 export const HREF_PEDIDO = '#cardapio'
 
+/** Página oficial de reservas do Beco Mágico (abre em nova aba). */
+export const LINK_RESERVA = 'https://plugguest.com.br/beco-magico-natal/'
+
 export interface Endereco {
   logradouro: string
   bairro?: string

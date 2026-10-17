@@ -1,4 +1,4 @@
-import { marca } from '../data/marca'
+import { LINK_RESERVA, marca } from '../data/marca'
 import { Logo } from './Logo'
 import './Footer.css'
 
@@ -27,6 +27,11 @@ export function Footer() {
                 <a href={l.href}>{l.rotulo}</a>
               </li>
             ))}
+            <li>
+              <a href={LINK_RESERVA} target="_blank" rel="noopener noreferrer">
+                Reservar mesa
+              </a>
+            </li>
           </ul>
         </nav>
 

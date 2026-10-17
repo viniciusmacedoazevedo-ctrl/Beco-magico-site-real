@@ -4,6 +4,7 @@ import { prefereMenosMovimento } from '../hooks/useRolagem'
 import { Morcegos, PoeiraMagica, type Grao, type Morcego } from './Atmosfera'
 import { HeroBurger } from './HeroBurger'
 import { BotaoPedir } from './BotaoPedir'
+import { BotaoReservar } from './BotaoReservar'
 import { IconeLocal, IconeRelogio, IconeSetaBaixo } from './Icones'
 import './HeroSection.css'
 
@@ -131,9 +132,7 @@ export function HeroSection() {
           </p>
           <div className="hero-acoes">
             <BotaoPedir />
-            <a href="#universo" className="hero-link">
-              Ver os favoritos
-            </a>
+            <BotaoReservar className="hero-reservar" />
           </div>
           {(horario || marca.endereco) && (
             <ul className="hero-info" role="list">

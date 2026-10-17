@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRolou } from '../hooks/useRolagem'
 import { BotaoPedir } from './BotaoPedir'
+import { BotaoReservar } from './BotaoReservar'
 import { IconeFechar, IconeMenu } from './Icones'
 import { Logo } from './Logo'
 import './Header.css'
@@ -72,6 +73,7 @@ export function Header() {
           </ul>
         </nav>
 
+        <BotaoReservar className="header-reservar" rotulo="Reservar" />
         <BotaoPedir compacto className="header-cta" />
 
         <button
@@ -100,7 +102,10 @@ export function Header() {
             ))}
           </ul>
         </nav>
-        <BotaoPedir className="menu-movel-cta" onClick={() => setAberto(false)} />
+        <div className="menu-movel-acoes">
+          <BotaoReservar onClick={() => setAberto(false)} />
+          <BotaoPedir onClick={() => setAberto(false)} />
+        </div>
       </div>
     </header>
   )

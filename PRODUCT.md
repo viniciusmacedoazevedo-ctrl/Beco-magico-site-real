@@ -11,6 +11,7 @@ Tudo aqui foi informado pelo responsável pelo projeto. O que ainda não foi con
 - **Frase de identidade:** “SABOROSAMENTE ASSUSTADOR”. Deve aparecer grande e legível, nunca escondida.
 - **Endereço:** Av. Miguel Castro, 751 – Lagoa Nova, Natal/RN.
 - **Horário:** terça a domingo, das 17h30 às 22h30.
+- **Reservas:** https://plugguest.com.br/beco-magico-natal/
 
 ## Superfície atual
 

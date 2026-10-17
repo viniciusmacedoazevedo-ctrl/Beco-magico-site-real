@@ -350,6 +350,33 @@ button {
   }
 }
 
+.botao--reservar {
+  --botao-fundo: rgb(255 255 255 / 0.04);
+  color: var(--cor-texto);
+  box-shadow: inset 0 0 0 1.5px rgb(225 169 59 / 0.55);
+}
+
+.botao--reservar:hover {
+  --botao-fundo: rgb(225 169 59 / 0.12);
+  box-shadow:
+    inset 0 0 0 1.5px var(--cor-ouro),
+    0 12px 30px -14px rgb(225 169 59 / 0.6);
+}
+
+.botao--reservar svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: var(--cor-ouro);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.botao--reservar:hover svg {
+  transform: none;
+}
+
 .botao--grande {
   min-height: 58px;
   padding-inline: var(--esp-7);

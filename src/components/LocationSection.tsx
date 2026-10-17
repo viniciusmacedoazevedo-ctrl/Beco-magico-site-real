@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { marca } from '../data/marca'
+import { BotaoReservar } from './BotaoReservar'
 import { IconeInstagram, IconeLocal, IconeRelogio, IconeSeta, IconeTelefone } from './Icones'
 import './LocationSection.css'
 
@@ -43,6 +44,9 @@ export function LocationSection() {
             Encontre <em>o beco</em>
           </h2>
           <p className="texto-apoio">Fica na Av. Miguel Castro, em Lagoa Nova. A entrada é pela porta de madeira entalhada.</p>
+          <div>
+            <BotaoReservar rotulo="Reservar minha mesa" />
+          </div>
           {pendentes.length > 0 && (
             <p className="texto-apoio">
               Em breve: {pendentes.length > 1 ? `${pendentes.slice(0, -1).join(', ')} e ${pendentes.at(-1)}` : pendentes[0]}.

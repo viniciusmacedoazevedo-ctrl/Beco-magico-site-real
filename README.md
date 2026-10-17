@@ -41,6 +41,10 @@ public/img/            imagens (fachada.jpg/webp já incluídas)
 
 Componente `BotaoPedir` (abertura, cabeçalho, menu do celular e final da cena do feitiço). O destino fica em `HREF_PEDIDO` (`src/data/marca.ts`). Hoje é `#cardapio`, porque o site não tem sistema de pedidos. Quando houver um link de delivery ou de WhatsApp, troque só essa constante.
 
+## Botão "Reservar mesa"
+
+Componente `BotaoReservar`. Abre a página de reservas da Plugguest (`LINK_RESERVA` em `src/data/marca.ts`) em uma nova aba. Aparece no cabeçalho, no menu do celular, na abertura, na seção "O Beco", na localização e no rodapé.
+
 ## Tipografia
 
 - Títulos: Anton.
