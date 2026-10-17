@@ -4,16 +4,12 @@ interface Props {
   tamanho?: 'md' | 'lg'
 }
 
-/**
- * Logotipo PROVISÓRIO (tipográfico), inspirado na placa da fachada.
- * Quando o arquivo oficial for entregue, substitua o conteúdo por
- * <img src="/img/logo.svg" alt="Beco Mágico" />.
- */
+/** Logotipo oficial do Beco Mágico (selo redondo, fundo transparente). */
 export function Logo({ tamanho = 'md' }: Props) {
   return (
-    <span className={`logo logo--${tamanho}`}>
-      <span className="logo-beco">Beco</span>
-      <span className="logo-magico">Mágico</span>
-    </span>
+    <picture className={`logo logo--${tamanho}`}>
+      <source srcSet="/img/logo.webp" type="image/webp" />
+      <img src="/img/logo.png" alt="Beco Mágico" width={384} height={384} decoding="async" />
+    </picture>
   )
 }

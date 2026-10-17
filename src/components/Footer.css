@@ -25,6 +25,17 @@
   font-size: 1.1rem;
 }
 
+.rodape-info {
+  display: grid;
+  align-content: start;
+  gap: var(--esp-2);
+  color: var(--cor-texto-2);
+}
+
+.rodape-info address {
+  font-style: normal;
+}
+
 .rodape-links {
   display: grid;
   gap: var(--esp-2);

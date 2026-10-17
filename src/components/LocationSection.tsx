@@ -27,7 +27,12 @@ function Cartao({ icone, titulo, children, acao }: CartaoProps) {
 
 export function LocationSection() {
   const { endereco, horarios, telefone, whatsapp, instagram } = marca
-  const algoPendente = !endereco || !horarios || !(telefone || whatsapp) || !instagram
+  const pendentes = [
+    !endereco && 'endereço',
+    !horarios && 'horários',
+    !(telefone || whatsapp) && 'telefone/WhatsApp',
+    !instagram && 'Instagram',
+  ].filter(Boolean)
 
   return (
     <section id="localizacao" className="local" aria-labelledby="local-titulo">
@@ -37,8 +42,10 @@ export function LocationSection() {
           <h2 id="local-titulo" className="titulo-secao">
             Encontre <em>o beco</em>
           </h2>
-          {algoPendente && (
-            <p className="texto-apoio">Endereço, horários e contatos oficiais serão publicados aqui em breve.</p>
+          {pendentes.length > 0 && (
+            <p className="texto-apoio">
+              Em breve: {pendentes.length > 1 ? `${pendentes.slice(0, -1).join(', ')} e ${pendentes.at(-1)}` : pendentes[0]}.
+            </p>
           )}
         </header>
 

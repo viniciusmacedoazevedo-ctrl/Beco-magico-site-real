@@ -30,6 +30,23 @@ export function Footer() {
           </ul>
         </nav>
 
+        {(marca.endereco || marca.horarios) && (
+          <div className="rodape-info">
+            {marca.endereco && (
+              <address>
+                {marca.endereco.logradouro} – {marca.endereco.bairro}
+                <br />
+                {marca.endereco.cidade}
+              </address>
+            )}
+            {marca.horarios?.map((h) => (
+              <p key={h.dias}>
+                {h.dias}, {h.horas}
+              </p>
+            ))}
+          </div>
+        )}
+
         {(marca.instagram || marca.telefone || marca.email) && (
           <ul role="list" className="rodape-links">
             {marca.instagram && (

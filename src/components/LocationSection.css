@@ -84,9 +84,8 @@
 }
 
 .info-horarios div {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--esp-3);
+  display: grid;
+  gap: 0.1rem;
 }
 
 .info-horarios dd {
@@ -110,6 +109,7 @@
   min-height: 380px;
   border: 0;
   border-radius: var(--raio-lg);
+  background: var(--cor-grafite);
   filter: grayscale(0.4) contrast(1.05);
 }
 
