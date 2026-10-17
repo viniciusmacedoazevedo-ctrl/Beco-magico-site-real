@@ -41,6 +41,14 @@ public/img/            imagens (fachada.jpg/webp já incluídas)
 
 `src/components/Atmosfera.tsx` tem os morcegos (`Morcegos`) e a poeira mágica (`PoeiraMagica`). Cada seção passa o seu próprio bando/partículas: a abertura usa poucos morcegos atrás do hambúrguer, "Saborosamente assustador" tem um bando cruzando a lua, e a fachada tem dois perto do telhado. Tudo é `aria-hidden`, `pointer-events: none` e fica parado com `prefers-reduced-motion`.
 
+## Cena do feitiço ("Saborosamente assustador")
+
+`src/components/SectionAssustador.tsx` + `Feiticeiro.tsx`. O visitante clica em **Lançar feitiço** e a cena roda uma vez: o ambiente acende, o braço do feiticeiro sobe, aparece a runa, o raio de partículas vai até o hambúrguer, um anel o envolve, a luz passa de laranja a roxo, uma explosão de fumaça encobre o produto e, quando se dissipa, aparece a versão de pão roxo. Depois o botão vira **Repetir feitiço**. A linha do tempo fica em `ROTEIRO` (ms) e os estados visuais em `[data-fase=...]` no CSS. Com `prefers-reduced-motion`, a troca é direta, sem partículas.
+
+- **Imagens:** `public/img/feitico/hamburguer-comum.webp` e `hamburguer-magico.webp` são a **mesma foto** (o recorte do pão vermelho) com o pão recolorido para dourado e para roxo. Assim o ângulo, o tamanho e a luz coincidem. **Não são imagens geradas por IA.** Para trocar por fotos reais (por exemplo, um pão roxo de verdade), mantenha as duas no mesmo enquadramento e com as mesmas dimensões.
+- **Feiticeiro:** ilustração vetorial (SVG) feita para o site, em silhueta contra a luz. Pode ser trocado por uma ilustração profissional sem mudar a lógica, desde que mantenha o grupo `#braco`.
+- A cena traz o aviso "Cena ilustrativa": o hambúrguer roxo não é um item do cardápio.
+
 ## Decisões
 
 - **Sem carrinho/pagamento**: não há integração de pedidos. O detalhe do produto oferece "Pedir pelo WhatsApp" assim que o número for cadastrado.

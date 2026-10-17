@@ -93,6 +93,23 @@ export function HeroBurger() {
           </div>
         )}
       </div>
+
+      <a href="#cardapio" className="selo-giratorio">
+        <svg className="selo-giratorio-texto" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <defs>
+            <path id="selo-circulo" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0" />
+          </defs>
+          <text>
+            <textPath href="#selo-circulo">Descobrir o cardápio ✦ Entre no beco ✦</textPath>
+          </text>
+        </svg>
+        <span className="selo-giratorio-centro">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7 17 17 7M9 7h8v8" />
+          </svg>
+        </span>
+        <span className="visualmente-oculto">Descobrir o cardápio</span>
+      </a>
     </div>
   )
 }

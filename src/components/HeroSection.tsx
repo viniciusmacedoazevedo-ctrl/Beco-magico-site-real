@@ -7,10 +7,10 @@ import { IconeLocal, IconeRelogio, IconeSeta, IconeSetaBaixo } from './Icones'
 import './HeroSection.css'
 
 const bando: Morcego[] = [
-  { y: 14, t: 46, d: 38, a: -6, p: 2, x: 62 },
-  { y: 22, t: 28, d: 52, a: -30, p: 3, x: 80, volta: true },
-  { y: 9, t: 22, d: 60, a: -12, p: 3, x: 40 },
-  { y: 30, t: 64, d: 30, a: -21, p: 1, x: 88, volta: true },
+  { y: 10, t: 58, d: 34, a: -6, p: 1, x: 62 },
+  { y: 24, t: 34, d: 46, a: -30, p: 2, x: 80, volta: true },
+  { y: 4, t: 26, d: 56, a: -12, p: 2, x: 40 },
+  { y: 34, t: 20, d: 60, a: -40, p: 3, x: 88, volta: true },
 ]
 
 const graos: Grao[] = [
