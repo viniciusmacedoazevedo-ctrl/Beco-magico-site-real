@@ -48,8 +48,8 @@ export function BrandStory() {
             Uma porta que <em>chama</em> para entrar.
           </h2>
           <p className="texto-apoio">
-            Parede preta, placa com letras douradas, estandartes coloridos e uma porta de madeira entalhada: a fachada do
-            Beco Mágico já avisa que ali dentro a experiência é diferente.
+            Parede preta, placa dourada, estandartes pendurados e uma porta de madeira entalhada. A fachada já avisa o
+            clima: do lado de dentro, a noite é do hambúrguer.
           </p>
           {marca.historia && <p className="texto-apoio">{marca.historia}</p>}
 

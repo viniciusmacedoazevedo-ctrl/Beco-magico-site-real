@@ -3,6 +3,7 @@ import { marca } from '../data/marca'
 import { prefereMenosMovimento } from '../hooks/useRolagem'
 import { Morcegos, type Morcego } from './Atmosfera'
 import { Feiticeiro } from './Feiticeiro'
+import { BotaoPedir } from './BotaoPedir'
 import { IconeEstrela, IconeSeta } from './Icones'
 import './SectionAssustador.css'
 
@@ -22,17 +23,19 @@ const estilhacos = Array.from({ length: 18 }, (_, i) => ({
   cor: i % 3 === 0 ? 'o' : i % 3 === 1 ? 'r' : 'l',
 }))
 
-type Fase = 'repouso' | 'preparo' | 'raio' | 'anel' | 'explosao' | 'revelado'
+type Fase = 'repouso' | 'preparo' | 'raio' | 'anel' | 'nevoa' | 'explosao' | 'revelado'
 
-// Linha do tempo do feitiço (ms desde o clique)
+// Linha do tempo do feitiço (ms desde o clique). Cada etapa tem o seu momento:
+// conjurar → raio → crescer → fumaça atrás + morcegos → explosão → revelação.
 const ROTEIRO: [Fase, number][] = [
   ['preparo', 0],
-  ['raio', 900],
+  ['raio', 1000],
   ['anel', 1900],
-  ['explosao', 2700],
-  ['revelado', 3700],
+  ['nevoa', 2700],
+  ['explosao', 3500],
+  ['revelado', 4500],
 ]
-const TROCA_IMAGEM = 3050
+const TROCA_IMAGEM = 3900
 
 export function SectionAssustador() {
   const [primeira, segunda] = marca.fraseTematica.split(' ')
@@ -65,6 +68,7 @@ export function SectionAssustador() {
   }
 
   const emAndamento = fase !== 'repouso' && fase !== 'revelado'
+  const revelado = fase === 'revelado'
 
   return (
     <section className="assustador" aria-labelledby="assustador-titulo">
@@ -89,14 +93,16 @@ export function SectionAssustador() {
 
         <div className="conteiner assustador-grade">
           <header className="assustador-cabecalho">
+            <p className="sobretitulo assustador-sobre" data-revelar>
+              A hora do mágico
+            </p>
             <h2 id="assustador-titulo" className="assustador-titulo" data-revelar>
               <span className="assustador-p1">{primeira}</span>
               <span className="assustador-p2">{segunda}</span>
             </h2>
             <div className="assustador-texto" data-revelar style={{ '--atraso': '150ms' } as React.CSSProperties}>
               <p>
-                Todo hambúrguer do Beco começa com um feitiço. Chame o feiticeiro e veja o que acontece com um
-                hambúrguer comum.
+                Um hambúrguer comum entra em cena. O feiticeiro ergue a varinha. O que sai da fumaça, você vê agora.
               </p>
               <div className="assustador-acoes">
                 <button
@@ -111,13 +117,17 @@ export function SectionAssustador() {
                   </svg>
                   {emAndamento ? 'Conjurando…' : fase === 'revelado' ? 'Repetir feitiço' : 'Lançar feitiço'}
                 </button>
-                <a href="#cardapio" className="botao botao--fantasma">
-                  Ver cardápio
-                  <IconeSeta />
-                </a>
+                {revelado ? (
+                  <BotaoPedir compacto />
+                ) : (
+                  <a href="#cardapio" className="botao botao--fantasma">
+                    Ver cardápio
+                    <IconeSeta />
+                  </a>
+                )}
               </div>
               <p id="feitico-status" className="visualmente-oculto" aria-live="polite">
-                {fase === 'revelado' ? 'Feitiço concluído: o hambúrguer ganhou pão roxo e brilho mágico.' : ''}
+                {revelado ? 'Feitiço completo: o hambúrguer cresceu e ganhou pão roxo.' : ''}
               </p>
             </div>
           </header>
@@ -156,6 +166,11 @@ export function SectionAssustador() {
             </svg>
 
             <div className="cena-produto">
+              <div className="cena-fumaca-atras" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
               <span className="cena-halo cena-halo--quente" aria-hidden="true" />
               <span className="cena-halo cena-halo--magico" aria-hidden="true" />
               <svg className="cena-anel" viewBox="0 0 200 200" aria-hidden="true">
@@ -209,6 +224,9 @@ export function SectionAssustador() {
               ))}
             </div>
           </div>
+          <p className={`cena-final ${revelado ? 'visivel' : ''}`} aria-hidden={!revelado}>
+            Do comum ao <em>mágico</em> em um feitiço.
+          </p>
           <p className="cena-legenda">Cena ilustrativa</p>
         </div>
       </div>

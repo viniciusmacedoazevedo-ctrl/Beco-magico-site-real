@@ -303,7 +303,8 @@
 }
 
 [data-fase='raio'] .raio-base,
-[data-fase='anel'] .raio-base {
+[data-fase='anel'] .raio-base,
+[data-fase='nevoa'] .raio-base {
   opacity: 1;
 }
 
@@ -328,6 +329,7 @@
 
 /* Produto */
 .cena-produto {
+  --escala-final: 1.36;
   position: absolute;
   left: 49%;
   top: 55%;
@@ -389,6 +391,9 @@
 }
 
 .cena-sombra {
+  transition:
+    transform 1.2s var(--ease-saida),
+    opacity 1s;
   position: absolute;
   z-index: 1;
   left: 14%;
@@ -470,6 +475,39 @@
   position: absolute;
 }
 
+.cena-final {
+  margin-top: var(--esp-4);
+  text-align: center;
+  font-family: var(--fonte-display);
+  font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.6rem);
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 700ms var(--ease-saida) 400ms,
+    transform 900ms var(--ease-saida) 400ms;
+}
+
+.cena-final em {
+  font-family: var(--fonte-marca);
+  font-style: normal;
+  font-weight: 800;
+  text-transform: none;
+  color: #c89bff;
+  font-size: 1.15em;
+}
+
+.cena-final.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+.assustador-sobre {
+  grid-column: 1 / -1;
+  margin-bottom: calc(var(--esp-3) * -1);
+}
+
 .cena-legenda {
   margin-top: var(--esp-3);
   text-align: right;
@@ -485,6 +523,7 @@
 [data-fase='preparo'] .assustador-brilho,
 [data-fase='raio'] .assustador-brilho,
 [data-fase='anel'] .assustador-brilho,
+[data-fase='nevoa'] .assustador-brilho,
 [data-fase='explosao'] .assustador-brilho {
   opacity: 1;
 }
@@ -492,13 +531,15 @@
 [data-fase='preparo'] .fei-braco,
 [data-fase='raio'] .fei-braco,
 [data-fase='anel'] .fei-braco,
+[data-fase='nevoa'] .fei-braco,
 [data-fase='explosao'] .fei-braco {
   transform: rotate(0deg);
 }
 
 [data-fase='preparo'] .fei-ponta,
 [data-fase='raio'] .fei-ponta,
-[data-fase='anel'] .fei-ponta {
+[data-fase='anel'] .fei-ponta,
+[data-fase='nevoa'] .fei-ponta {
   opacity: 1;
   animation: ponta-pulsa 0.6s var(--ease-suave) infinite alternate;
 }
@@ -506,6 +547,7 @@
 [data-fase='preparo'] .fei-olho,
 [data-fase='raio'] .fei-olho,
 [data-fase='anel'] .fei-olho,
+[data-fase='nevoa'] .fei-olho,
 [data-fase='explosao'] .fei-olho {
   opacity: 1;
 }
@@ -521,7 +563,8 @@
 
 /* 2. Raio: partículas correm da varinha até o hambúrguer */
 [data-fase='raio'] .raio,
-[data-fase='anel'] .raio {
+[data-fase='anel'] .raio,
+[data-fase='nevoa'] .raio {
   opacity: 1;
   animation: raio-flui 0.9s linear infinite;
 }
@@ -538,27 +581,115 @@
 
 /* 3. Anel: energia envolve o produto e a luz muda para roxo */
 [data-fase='anel'] .cena-anel,
+[data-fase='nevoa'] .cena-anel,
 [data-fase='explosao'] .cena-anel {
   opacity: 1;
   transform: scale(1);
   animation: runa-gira 3s linear infinite;
 }
 
-[data-fase='anel'] .cena-halo--quente,
+[data-fase='nevoa'] .cena-halo--quente,
 [data-fase='explosao'] .cena-halo--quente,
 [data-fase='revelado'] .cena-halo--quente {
   opacity: 0;
 }
 
-[data-fase='anel'] .cena-halo--magico,
+[data-fase='nevoa'] .cena-halo--magico,
 [data-fase='explosao'] .cena-halo--magico,
 [data-fase='revelado'] .cena-halo--magico {
   opacity: 1;
 }
 
+/* O hambúrguer cresce aos poucos enquanto o feitiço carrega */
 [data-fase='anel'] .cena-burger--comum {
-  transform: scale(1.02);
-  filter: drop-shadow(0 34px 30px rgb(0 0 0 / 0.65)) drop-shadow(0 0 24px rgb(170 100 255 / 0.7));
+  transform: scale(1.08);
+  transition-duration: 450ms, 1.6s, 1s;
+  filter: drop-shadow(0 34px 30px rgb(0 0 0 / 0.65)) drop-shadow(0 0 24px rgb(170 100 255 / 0.6));
+}
+
+[data-fase='nevoa'] .cena-burger--comum,
+[data-fase='explosao'] .cena-burger--comum {
+  transform: scale(1.18);
+  transition-duration: 450ms, 1.6s, 1s;
+  filter: drop-shadow(0 34px 30px rgb(0 0 0 / 0.65)) drop-shadow(0 0 34px rgb(170 100 255 / 0.85));
+  animation: tremor 0.18s linear infinite;
+}
+
+[data-fase='explosao'] .cena-burger--magico {
+  transform: scale(1.18);
+}
+
+/* Fumaça atrás do produto que se abre para as laterais */
+.cena-fumaca-atras {
+  position: absolute;
+  inset: -10% -40%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cena-fumaca-atras span {
+  position: absolute;
+  top: 18%;
+  bottom: 8%;
+  width: 46%;
+  border-radius: 50%;
+  filter: blur(26px);
+  opacity: 0;
+  transform: scaleX(0.3);
+  transition:
+    opacity 1.2s var(--ease-suave),
+    transform 2.2s var(--ease-saida);
+}
+
+.cena-fumaca-atras span:nth-child(1) {
+  left: 4%;
+  background: radial-gradient(closest-side, rgb(124 63 190 / 0.75), rgb(60 25 95 / 0.4) 60%, transparent);
+  transform-origin: right center;
+}
+
+.cena-fumaca-atras span:nth-child(2) {
+  right: 4%;
+  background: radial-gradient(closest-side, rgb(124 63 190 / 0.7), rgb(217 98 28 / 0.25) 60%, transparent);
+  transform-origin: left center;
+}
+
+.cena-fumaca-atras span:nth-child(3) {
+  left: 27%;
+  width: 46%;
+  top: -10%;
+  bottom: 40%;
+  background: radial-gradient(closest-side, rgb(217 98 28 / 0.4), transparent);
+}
+
+[data-fase='nevoa'] .cena-fumaca-atras span,
+[data-fase='explosao'] .cena-fumaca-atras span,
+[data-fase='revelado'] .cena-fumaca-atras span {
+  opacity: 1;
+  transform: scaleX(1);
+  animation: fumaca-ondula 6s var(--ease-suave) infinite alternate;
+}
+
+[data-fase='revelado'] .cena-fumaca-atras span {
+  opacity: 0.55;
+}
+
+@keyframes fumaca-ondula {
+  to {
+    translate: 0 -6%;
+    scale: 1.08 1.04;
+  }
+}
+
+@keyframes tremor {
+  25% {
+    translate: 1px -1px;
+  }
+  50% {
+    translate: -1px 0;
+  }
+  75% {
+    translate: 0 1px;
+  }
 }
 
 /* 4. Explosão: fumaça encobre, partículas saem, a imagem troca por baixo */
@@ -580,9 +711,15 @@
 
 /* 5. Revelado: hambúrguer mágico maior, brilhos, morcegos passam */
 [data-fase='revelado'] .cena-burger--magico {
-  transform: scale(1.08);
-  filter: drop-shadow(0 40px 34px rgb(0 0 0 / 0.7)) drop-shadow(0 0 30px rgb(170 100 255 / 0.55));
-  animation: magico-flutua 6s var(--ease-suave) 1.2s infinite;
+  transform: scale(var(--escala-final));
+  filter: drop-shadow(0 46px 36px rgb(0 0 0 / 0.72)) drop-shadow(-16px 0 26px rgb(150 80 230 / 0.55))
+    drop-shadow(16px -4px 26px rgb(242 136 58 / 0.4));
+  animation: magico-flutua 7s var(--ease-suave) 1.4s infinite;
+}
+
+[data-fase='revelado'] .cena-sombra {
+  transform: scale(1.35);
+  opacity: 0.9;
 }
 
 [data-fase='revelado'] .cena-fumaca {
@@ -593,11 +730,13 @@
   animation: brilho-pisca 1.4s var(--ease-suave) var(--a) 3;
 }
 
+[data-fase='nevoa'] .cena-morcegos-final,
+[data-fase='explosao'] .cena-morcegos-final,
 [data-fase='revelado'] .cena-morcegos-final {
   display: block;
 }
 
-[data-fase='revelado'] .cena-morcegos-final .morcego {
+.cena-morcegos-final .morcego {
   animation-iteration-count: 1;
   animation-fill-mode: both;
 }
@@ -690,10 +829,10 @@
 @keyframes magico-flutua {
   0%,
   100% {
-    transform: scale(1.08) translateY(0);
+    transform: scale(var(--escala-final)) translateY(0);
   }
   50% {
-    transform: scale(1.08) translateY(-8px);
+    transform: scale(var(--escala-final)) translateY(-8px);
   }
 }
 
@@ -754,9 +893,18 @@
   }
 
   .cena-produto {
+    --escala-final: 1.14;
     left: 26%;
     top: 30%;
     width: 70%;
+  }
+
+  [data-fase='revelado'] .cena-produto {
+    left: 20%;
+  }
+
+  .cena-produto {
+    transition: left 1.2s var(--ease-saida);
   }
 
   .raio-desktop {
@@ -767,8 +915,14 @@
     display: inline;
   }
 
-  .assustador-acoes .botao {
+  .assustador-acoes .botao,
+  .assustador-acoes .botao-pedir {
     flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .assustador-acoes .botao-pedir {
+    justify-content: space-between;
   }
 }
 

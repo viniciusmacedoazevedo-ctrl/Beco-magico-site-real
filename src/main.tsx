@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@fontsource/anton/latin.css'
-import '@fontsource/pirata-one/latin.css'
+import '@fontsource-variable/grenze-gotisch/index.css'
 import '@fontsource-variable/manrope/index.css'
 import '@fontsource-variable/fraunces/wght-italic.css'
 import './styles/tokens.css'

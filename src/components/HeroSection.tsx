@@ -3,7 +3,8 @@ import { marca } from '../data/marca'
 import { prefereMenosMovimento } from '../hooks/useRolagem'
 import { Morcegos, PoeiraMagica, type Grao, type Morcego } from './Atmosfera'
 import { HeroBurger } from './HeroBurger'
-import { IconeLocal, IconeRelogio, IconeSeta, IconeSetaBaixo } from './Icones'
+import { BotaoPedir } from './BotaoPedir'
+import { IconeLocal, IconeRelogio, IconeSetaBaixo } from './Icones'
 import './HeroSection.css'
 
 const bando: Morcego[] = [
@@ -102,7 +103,18 @@ export function HeroSection() {
             </span>
             <span className="hero-linha hero-linha--2 hero-entra" style={atraso(200)}>
               <span className="hero-mais">mais</span>
-              <span className="hero-magico">mágico</span>
+              <span className="hero-magico">
+                Mágico
+                <svg className="hero-faisca hero-faisca--1" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 0c.9 6.2 5.8 11.1 12 12-6.2.9-11.1 5.8-12 12-.9-6.2-5.8-11.1-12-12 6.2-.9 11.1-5.8 12-12Z" />
+                </svg>
+                <svg className="hero-faisca hero-faisca--2" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 0c.9 6.2 5.8 11.1 12 12-6.2.9-11.1 5.8-12 12-.9-6.2-5.8-11.1-12-12 6.2-.9 11.1-5.8 12-12Z" />
+                </svg>
+                <svg className="hero-faisca hero-faisca--3" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 0c.9 6.2 5.8 11.1 12 12-6.2.9-11.1 5.8-12 12-.9-6.2-5.8-11.1-12-12 6.2-.9 11.1-5.8 12-12Z" />
+                </svg>
+              </span>
             </span>
             <span className="hero-linha hero-linha--3 hero-entra" style={atraso(280)}>
               do Brasil.
@@ -114,15 +126,12 @@ export function HeroSection() {
 
         <div className="hero-base hero-entra" style={atraso(380)}>
           <p className="hero-descricao">
-            Pães coloridos, queijo que escorre e um toque de mistério em cada mordida. Entre no beco e encontre o seu
-            feitiço favorito.
+            Pão colorido, carne na chapa e queijo escorrendo pela borda. Passe pela porta entalhada e escolha o seu
+            feitiço.
           </p>
           <div className="hero-acoes">
-            <a href="#cardapio" className="botao botao--grande">
-              Descobrir o cardápio
-              <IconeSeta />
-            </a>
-            <a href="#universo" className="botao botao--fantasma botao--grande">
+            <BotaoPedir />
+            <a href="#universo" className="hero-link">
               Ver os favoritos
             </a>
           </div>

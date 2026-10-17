@@ -100,7 +100,7 @@ export function HeroBurger() {
             <path id="selo-circulo" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1 -92 0" />
           </defs>
           <text>
-            <textPath href="#selo-circulo">Descobrir o cardápio ✦ Entre no beco ✦</textPath>
+            <textPath href="#selo-circulo" textLength="284" lengthAdjust="spacing">Pedir agora ✦ Entre no beco ✦ Pedir agora ✦</textPath>
           </text>
         </svg>
         <span className="selo-giratorio-centro">
@@ -108,7 +108,7 @@ export function HeroBurger() {
             <path d="M7 17 17 7M9 7h8v8" />
           </svg>
         </span>
-        <span className="visualmente-oculto">Descobrir o cardápio</span>
+        <span className="visualmente-oculto">Pedir agora: ir ao cardápio</span>
       </a>
     </div>
   )

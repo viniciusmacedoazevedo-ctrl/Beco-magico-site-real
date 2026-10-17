@@ -6,6 +6,12 @@
  * informação inventada (e esconde botões que dependeriam dele).
  */
 
+/**
+ * Destino do botão “Pedir agora”. Sem sistema de pedidos, leva ao cardápio.
+ * Quando houver (link de delivery, WhatsApp etc.), coloque a URL aqui.
+ */
+export const HREF_PEDIDO = '#cardapio'
+
 export interface Endereco {
   logradouro: string
   bairro?: string

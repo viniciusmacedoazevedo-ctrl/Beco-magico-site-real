@@ -42,6 +42,7 @@ export function LocationSection() {
           <h2 id="local-titulo" className="titulo-secao">
             Encontre <em>o beco</em>
           </h2>
+          <p className="texto-apoio">Fica na Av. Miguel Castro, em Lagoa Nova. A entrada é pela porta de madeira entalhada.</p>
           {pendentes.length > 0 && (
             <p className="texto-apoio">
               Em breve: {pendentes.length > 1 ? `${pendentes.slice(0, -1).join(', ')} e ${pendentes.at(-1)}` : pendentes[0]}.

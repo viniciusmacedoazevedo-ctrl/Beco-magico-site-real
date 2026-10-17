@@ -37,13 +37,24 @@ public/img/            imagens (fachada.jpg/webp já incluídas)
 | História da casa | `marca.historia` | Espaço reservado. |
 | Foto da fachada em alta resolução | `public/img/fachada.*` | A atual tem 715×364 px. Uma versão maior deixa a seção "O Beco" mais nítida. |
 
+## Botão "Pedir agora"
+
+Componente `BotaoPedir` (abertura, cabeçalho, menu do celular e final da cena do feitiço). O destino fica em `HREF_PEDIDO` (`src/data/marca.ts`). Hoje é `#cardapio`, porque o site não tem sistema de pedidos. Quando houver um link de delivery ou de WhatsApp, troque só essa constante.
+
+## Tipografia
+
+- Títulos: Anton.
+- "Mágico" e o nome da marca: Grenze Gotisch (variável, peso 800).
+- Itálicos editoriais: Fraunces.
+- Textos e preços: Manrope.
+
 ## Atmosfera
 
 `src/components/Atmosfera.tsx` tem os morcegos (`Morcegos`) e a poeira mágica (`PoeiraMagica`). Cada seção passa o seu próprio bando/partículas: a abertura usa poucos morcegos atrás do hambúrguer, "Saborosamente assustador" tem um bando cruzando a lua, e a fachada tem dois perto do telhado. Tudo é `aria-hidden`, `pointer-events: none` e fica parado com `prefers-reduced-motion`.
 
 ## Cena do feitiço ("Saborosamente assustador")
 
-`src/components/SectionAssustador.tsx` + `Feiticeiro.tsx`. O visitante clica em **Lançar feitiço** e a cena roda uma vez: o ambiente acende, o braço do feiticeiro sobe, aparece a runa, o raio de partículas vai até o hambúrguer, um anel o envolve, a luz passa de laranja a roxo, uma explosão de fumaça encobre o produto e, quando se dissipa, aparece a versão de pão roxo. Depois o botão vira **Repetir feitiço**. A linha do tempo fica em `ROTEIRO` (ms) e os estados visuais em `[data-fase=...]` no CSS. Com `prefers-reduced-motion`, a troca é direta, sem partículas.
+`src/components/SectionAssustador.tsx` + `Feiticeiro.tsx`. O visitante clica em **Lançar feitiço** e a cena roda uma vez: o ambiente acende, o braço do feiticeiro sobe, aparece a runa, o raio de partículas vai até o hambúrguer, um anel o envolve e ele começa a crescer, a fumaça se abre atrás dele enquanto morcegos passam, uma explosão de fumaça o encobre e, quando se dissipa, aparece a versão de pão roxo, bem maior. No final aparece o botão "Pedir agora". Depois o botão vira **Repetir feitiço**. A linha do tempo fica em `ROTEIRO` (ms) e os estados visuais em `[data-fase=...]` no CSS. Com `prefers-reduced-motion`, a troca é direta, sem partículas.
 
 - **Imagens:** `public/img/feitico/hamburguer-comum.webp` e `hamburguer-magico.webp` são a **mesma foto** (o recorte do pão vermelho) com o pão recolorido para dourado e para roxo. Assim o ângulo, o tamanho e a luz coincidem. **Não são imagens geradas por IA.** Para trocar por fotos reais (por exemplo, um pão roxo de verdade), mantenha as duas no mesmo enquadramento e com as mesmas dimensões.
 - **Feiticeiro:** ilustração vetorial (SVG) feita para o site, em silhueta contra a luz. Pode ser trocado por uma ilustração profissional sem mudar a lógica, desde que mantenha o grupo `#braco`.

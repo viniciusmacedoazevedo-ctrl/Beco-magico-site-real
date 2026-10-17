@@ -333,6 +333,10 @@
 }
 
 @media (max-width: 900px) {
+  .selo-giratorio {
+    display: none;
+  }
+
   .palco {
     width: 100%;
     max-width: 560px;

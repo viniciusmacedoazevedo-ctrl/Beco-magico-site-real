@@ -3,6 +3,7 @@ import { buscarProduto, VITRINE, type Produto } from '../data/cardapio'
 import { caminhoGotejamento } from '../lib/gotejamento'
 import { mostrarNoCardapio } from '../lib/eventos'
 import { formatarPreco } from '../lib/formatar'
+import { Morcegos, type Morcego } from './Atmosfera'
 import { IconeSeta } from './Icones'
 import './Transicao.css'
 
@@ -17,6 +18,13 @@ const borda = caminhoGotejamento([
 ])
 
 const posicoes = ['centro', 'direita', 'esquerda'] as const
+
+// Morcegos que “saem” do molho escuro do topo, contra o fundo claro
+const bando: Morcego[] = [
+  { y: 6, t: 30, d: 30, a: -8, p: 2, x: 24 },
+  { y: 14, t: 18, d: 42, a: -22, p: 3, x: 72, volta: true },
+  { y: 2, t: 22, d: 36, a: -15, p: 3, x: 52 },
+]
 
 interface Props {
   onAbrir: (produto: Produto) => void
@@ -47,13 +55,20 @@ export function Transicao({ onAbrir }: Props) {
         <path d={borda} />
       </svg>
 
+      <Morcegos bando={bando} className="universo-morcegos" />
+      <svg className="universo-runa" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="96" />
+        <circle cx="100" cy="100" r="80" strokeDasharray="2 6" />
+        <path d="M100 8 L180 146 L20 146 Z M100 192 L20 54 L180 54 Z" />
+      </svg>
+
       <div className="conteiner">
         <header className="universo-cabecalho" data-revelar>
           <p className="sobretitulo">O universo do Beco</p>
           <h2 id="universo-titulo" className="titulo-secao">
             Cada mordida, <em>um feitiço.</em>
           </h2>
-          <p className="texto-apoio">Toque em um hambúrguer para trazê-lo para a frente e conhecer o feitiço.</p>
+          <p className="texto-apoio">Três criações da casa. Toque em uma para trazê-la para a frente e ver o que vai dentro.</p>
         </header>
 
         <div className="vitrine" data-revelar>

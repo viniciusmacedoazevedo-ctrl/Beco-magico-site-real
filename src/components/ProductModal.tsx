@@ -60,7 +60,7 @@ export function ProductModal({ produto, onFechar }: Props) {
 
             {produto.ingredientes && produto.ingredientes.length > 0 && (
               <div className="modal-ingredientes">
-                <h3>Ingredientes</h3>
+                <h3>O que vai dentro</h3>
                 <ul role="list">
                   {produto.ingredientes.map((ing) => (
                     <li key={ing}>{ing}</li>
@@ -71,6 +71,11 @@ export function ProductModal({ produto, onFechar }: Props) {
 
             <div className="modal-rodape">
               <span className="modal-preco">{formatarPreco(produto.preco)}</span>
+              {!marca.whatsapp && (
+                <button type="button" className="botao botao--fantasma" onClick={() => dialogoRef.current?.close()}>
+                  Continuar escolhendo
+                </button>
+              )}
               {marca.whatsapp && (
                 <a
                   className="botao"

@@ -325,3 +325,26 @@
     flex: 1 1 100%;
   }
 }
+
+.universo-morcegos {
+  inset: clamp(70px, 9vw, 140px) 0 auto;
+  height: 220px;
+}
+
+.universo-morcegos .morcego svg {
+  fill: #1a1410;
+  filter: none;
+}
+
+.universo-runa {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(820px, 120vw);
+  translate: -50% 0;
+  fill: none;
+  stroke: rgb(217 98 28 / 0.14);
+  stroke-width: 0.5;
+  pointer-events: none;
+  animation: circulo-gira 200s linear infinite;
+}

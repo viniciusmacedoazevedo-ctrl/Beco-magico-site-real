@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRolou } from '../hooks/useRolagem'
-import { IconeFechar, IconeMenu, IconeSeta } from './Icones'
+import { BotaoPedir } from './BotaoPedir'
+import { IconeFechar, IconeMenu } from './Icones'
 import { Logo } from './Logo'
 import './Header.css'
 
@@ -71,10 +72,7 @@ export function Header() {
           </ul>
         </nav>
 
-        <a href="#cardapio" className="botao header-cta">
-          Ver cardápio
-          <IconeSeta />
-        </a>
+        <BotaoPedir compacto className="header-cta" />
 
         <button
           ref={botaoRef}
@@ -102,10 +100,7 @@ export function Header() {
             ))}
           </ul>
         </nav>
-        <a href="#cardapio" className="botao menu-movel-cta" onClick={() => setAberto(false)}>
-          Ver cardápio
-          <IconeSeta />
-        </a>
+        <BotaoPedir className="menu-movel-cta" onClick={() => setAberto(false)} />
       </div>
     </header>
   )

@@ -66,11 +66,7 @@
   transform: scaleX(1);
 }
 
-.header-cta {
-  min-height: 44px;
-  padding-inline: var(--esp-5);
-  font-size: var(--texto-sm);
-}
+
 
 .header-alternar {
   display: none;
@@ -144,7 +140,7 @@
 
   .menu-movel-cta {
     margin-top: auto;
-    width: 100%;
+    justify-content: space-between;
   }
 }
 

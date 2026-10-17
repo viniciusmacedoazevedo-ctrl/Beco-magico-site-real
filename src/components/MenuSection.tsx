@@ -67,6 +67,7 @@ export function MenuSection({ onAbrir }: Props) {
           <h2 id="cardapio-titulo" className="titulo-secao">
             Escolha o seu <em>feitiço</em>
           </h2>
+          <p className="texto-apoio">Escolha a categoria e toque em um item para ver o que vai dentro.</p>
           <AvisoDemonstrativo />
         </header>
 
