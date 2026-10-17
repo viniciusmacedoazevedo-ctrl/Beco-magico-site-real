@@ -165,3 +165,8 @@
     aspect-ratio: 16 / 11;
   }
 }
+
+/* Fotos verticais: mantém o produto (centro-baixo) no recorte */
+.produto-foto .foto {
+  object-position: 50% 62%;
+}

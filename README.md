@@ -30,11 +30,8 @@ public/img/            imagens (fachada.jpg/webp já incluídas)
 
 | Item | Onde | Situação |
 | --- | --- | --- |
-| Cardápio oficial (nomes, descrições, preços, ingredientes) | `src/data/cardapio.ts` | **Itens de exemplo.** Trocar e mudar `CARDAPIO_DEMONSTRATIVO` para `false` (o aviso "Cardápio ilustrativo" some). |
-| Foto principal do hambúrguer (abertura) | `public/img/` + `imagens.heroHamburguer` em `marca.ts` | Falta. Ideal: PNG/WebP **com fundo transparente**, ~1600×1600 px. Enquanto não existir, a abertura mostra o selo da marca. As gotas de molho, a sombra e a flutuação são ativadas quando a foto entra. |
-| Fotos dos produtos | `public/img/produtos/` + campo `imagem` de cada produto | Faltam. Sem foto, o card mostra uma arte provisória (sem imagem quebrada). |
-| Foto da seção "Saborosamente assustador" | `imagens.tematica` | Falta. Vertical (4:5), luz dramática laranja/roxa. |
-| 3 fotos da seção "Cada mordida, um feitiço" | `imagens.transicao` | Faltam. Verticais (~900×1100). |
+| Cardápio oficial (nomes, descrições, preços, ingredientes) | `src/data/cardapio.ts` | **Nomes e preços de exemplo.** As 14 fotos de produto já estão ligadas, e as descrições seguem o que aparece em cada foto. Trocar pelos dados reais e mudar `CARDAPIO_DEMONSTRATIVO` para `false` (o aviso "Cardápio ilustrativo" some). |
+| Fotos | `public/img/` e `public/img/produtos/` | 15 fotos convertidas para WebP (~1000 px; abertura 2000 px + 1200 px). A abertura usa a foto larga como fundo. Para a versão com hambúrguer recortado e flutuante, informe um PNG transparente em `imagens.heroHamburguer` e defina `heroFundo` como `null`. |
 | Logotipo oficial | `src/components/Logo.tsx` | Hoje é **provisório** (tipográfico, inspirado na placa da fachada). Trocar pelo SVG/PNG oficial. |
 | Endereço, link do mapa, horários, telefone/WhatsApp, Instagram, e-mail | `src/data/marca.ts` | `null` = "A confirmar". Ao preencher, aparecem os botões "Abrir rota", o mapa incorporado e "Pedir pelo WhatsApp" no detalhe do produto. |
 | História da casa | `marca.historia` | Espaço reservado. |

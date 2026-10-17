@@ -59,12 +59,26 @@ export const marca: Marca = {
  * `null` = imagem ainda não fornecida (o site mostra uma composição provisória).
  */
 export const imagens = {
-  /** Hambúrguer principal da abertura. Ideal: PNG/WebP com fundo transparente, ~1600px. */
+  /**
+   * Foto larga da abertura (hambúrguer à direita, área escura à esquerda para o texto).
+   * Quando existe, ela ocupa o fundo da abertura no lugar da composição com o selo.
+   */
+  heroFundo: {
+    grande: '/img/hero.webp',
+    media: '/img/hero-1200.webp',
+    largura: 2000,
+    altura: 1116,
+  } as { grande: string; media: string; largura: number; altura: number } | null,
+  /** Hambúrguer recortado (PNG/WebP transparente, ~1600px) para a composição flutuante. Opcional. */
   heroHamburguer: null as string | null,
   /** Hambúrguer em iluminação dramática para a seção “Saborosamente assustador”. */
-  tematica: null as string | null,
+  tematica: '/img/produtos/hamburguer-pao-verde-queijo-empanado.webp' as string | null,
   /** Composição de hambúrgueres para a seção logo após a abertura (até 3). */
-  transicao: [] as string[],
+  transicao: [
+    '/img/produtos/hamburguer-pao-verde-desfiado.webp',
+    '/img/produtos/hamburguer-bacon-cheddar.webp',
+    '/img/produtos/hamburguer-ovo-batata-palha.webp',
+  ] as string[],
   /** Foto real da fachada (fornecida pelo estabelecimento). */
   fachada: {
     webp: '/img/fachada.webp',

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { marca } from '../data/marca'
+import { imagens, marca } from '../data/marca'
 import { prefereMenosMovimento } from '../hooks/useRolagem'
 import { HeroBurger } from './HeroBurger'
 import { IconeSeta, IconeSetaBaixo } from './Icones'
@@ -7,6 +7,7 @@ import './HeroSection.css'
 
 export function HeroSection() {
   const secaoRef = useRef<HTMLElement>(null)
+  const fundo = imagens.heroFundo
 
   // Parallax leve: o ponteiro e a rolagem alimentam variáveis CSS (--mx, --my, --rolagem)
   useEffect(() => {
@@ -58,7 +59,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section id="inicio" className="hero" ref={secaoRef} aria-labelledby="hero-titulo">
+    <section id="inicio" className={`hero ${fundo ? 'hero--foto' : ''}`} ref={secaoRef} aria-labelledby="hero-titulo">
       <div className="hero-fundo" aria-hidden="true">
         <span className="hero-luz hero-luz--laranja" />
         <span className="hero-luz hero-luz--roxa" />
@@ -83,7 +84,22 @@ export function HeroSection() {
           </h1>
         </div>
 
-        <HeroBurger />
+        {fundo ? (
+          <div className="hero-foto">
+            <img
+              src={fundo.grande}
+              srcSet={`${fundo.media} 1200w, ${fundo.grande} ${fundo.largura}w`}
+              sizes="100vw"
+              width={fundo.largura}
+              height={fundo.altura}
+              alt="Hambúrguer de pão vermelho com cheddar derretido sobre pedra escura, ao lado de uma bebida azul soltando fumaça"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </div>
+        ) : (
+          <HeroBurger />
+        )}
 
         <div className="hero-base hero-entra" style={{ '--atraso': '380ms' } as React.CSSProperties}>
           <p className="hero-descricao">

@@ -37,7 +37,7 @@ export function SectionAssustador() {
           <figure className="assustador-foto" data-revelar style={{ '--atraso': '150ms' } as React.CSSProperties}>
             <Foto
               src={imagens.tematica}
-              alt="Hambúrguer do Beco Mágico sob luz laranja e roxa"
+              alt="Hambúrguer de pão verde com queijo empanado e queijo derretido, com fumaça ao fundo"
               largura={1100}
               altura={1300}
             />
