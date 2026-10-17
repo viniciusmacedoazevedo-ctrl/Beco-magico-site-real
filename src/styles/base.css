@@ -236,6 +236,29 @@ button {
   box-shadow: inset 0 0 0 1px rgb(255 240 225 / 0.35);
 }
 
+.botao--grande {
+  min-height: 58px;
+  padding-inline: var(--esp-7);
+  font-size: 1.05rem;
+}
+
+.botao--contorno {
+  --botao-fundo: transparent;
+  color: var(--cor-tinta);
+  box-shadow: inset 0 0 0 1.5px rgb(26 20 16 / 0.35);
+}
+
+.botao--contorno:hover {
+  --botao-fundo: var(--cor-tinta);
+  color: var(--cor-creme);
+  box-shadow: none;
+}
+
+.botao:focus-visible {
+  outline: 2px solid var(--cor-ouro);
+  outline-offset: 4px;
+}
+
 .botao--escuro {
   --botao-fundo: var(--cor-tinta);
   color: var(--cor-creme);

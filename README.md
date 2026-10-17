@@ -31,11 +31,15 @@ public/img/            imagens (fachada.jpg/webp já incluídas)
 | Item | Onde | Situação |
 | --- | --- | --- |
 | Cardápio oficial (nomes, descrições, preços, ingredientes) | `src/data/cardapio.ts` | **Nomes e preços de exemplo.** As 14 fotos de produto já estão ligadas, e as descrições seguem o que aparece em cada foto. Trocar pelos dados reais e mudar `CARDAPIO_DEMONSTRATIVO` para `false` (o aviso "Cardápio ilustrativo" some). |
-| Fotos | `public/img/` e `public/img/produtos/` | 15 fotos convertidas para WebP (~1000 px; abertura 2000 px + 1200 px). A abertura usa a foto larga como fundo. Para a versão com hambúrguer recortado e flutuante, informe um PNG transparente em `imagens.heroHamburguer` e defina `heroFundo` como `null`. |
+| Fotos | `public/img/produtos/` (fotos) e `public/img/recortes/` (recortes) | 14 fotos de produto em WebP. Os hambúrgueres da abertura e do "Universo do Beco" são **recortes com transparência real** (canal alfa), gerados a partir das próprias fotos com remoção de fundo automática (modelo isnet). Para trocar, gere um WebP/PNG transparente e aponte `recorte` no produto (`cardapio.ts`) ou `imagens.heroHamburguer` (`marca.ts`). |
 | Logotipo oficial | `src/components/Logo.tsx` | Hoje é **provisório** (tipográfico, inspirado na placa da fachada). Trocar pelo SVG/PNG oficial. |
 | Endereço, link do mapa, horários, telefone/WhatsApp, Instagram, e-mail | `src/data/marca.ts` | `null` = "A confirmar". Ao preencher, aparecem os botões "Abrir rota", o mapa incorporado e "Pedir pelo WhatsApp" no detalhe do produto. |
 | História da casa | `marca.historia` | Espaço reservado. |
 | Foto da fachada em alta resolução | `public/img/fachada.*` | A atual tem 715×364 px. Uma versão maior deixa a seção "O Beco" mais nítida. |
+
+## Atmosfera
+
+`src/components/Atmosfera.tsx` tem os morcegos (`Morcegos`) e a poeira mágica (`PoeiraMagica`). Cada seção passa o seu próprio bando/partículas: a abertura usa poucos morcegos atrás do hambúrguer, "Saborosamente assustador" tem um bando cruzando a lua, e a fachada tem dois perto do telhado. Tudo é `aria-hidden`, `pointer-events: none` e fica parado com `prefers-reduced-motion`.
 
 ## Decisões
 

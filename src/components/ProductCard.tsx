@@ -7,14 +7,16 @@ import './ProductCard.css'
 interface Props {
   produto: Produto
   variante?: 'destaque' | 'lista'
+  /** id do elemento (usado pelo cardápio para rolar até o produto) */
+  id?: string
   onAbrir: (produto: Produto) => void
 }
 
-export function ProductCard({ produto, variante = 'lista', onAbrir }: Props) {
+export function ProductCard({ produto, variante = 'lista', id, onAbrir }: Props) {
   const { nome, descricao, preco, selo, imagem, imagemAlt } = produto
 
   return (
-    <article className={`produto produto--${variante}`}>
+    <article id={id} className={`produto produto--${variante}`}>
       <div className="produto-foto">
         <Foto src={imagem} alt={imagemAlt ?? nome} largura={900} altura={1000} />
         {selo && <span className="produto-selo">{selo}</span>}

@@ -35,7 +35,7 @@
   --texto-md: 1rem;
   --texto-lg: clamp(1.05rem, 0.98rem + 0.3vw, 1.2rem);
   --titulo-sm: clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
-  --titulo-md: clamp(2.2rem, 1.4rem + 3.4vw, 4.25rem);
+  --titulo-md: clamp(2.6rem, 1.3rem + 4.6vw, 5.6rem);
   --titulo-lg: clamp(2.8rem, 1.2rem + 6.6vw, 7.75rem);
 
   /* Espaçamento */

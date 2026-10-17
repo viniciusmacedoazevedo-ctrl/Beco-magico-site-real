@@ -38,6 +38,8 @@ export interface Produto {
   destaque?: boolean
   imagem?: string
   imagemAlt?: string
+  /** Recorte do produto com fundo transparente (WebP com canal alfa). */
+  recorte?: string
 }
 
 export const categorias: Categoria[] = [
@@ -73,9 +75,9 @@ export const produtos: Produto[] = [
     preco: 39.9,
     ingredientes: ['Pão escuro', 'Carne bovina', 'Cheddar', 'Cebola caramelizada', 'Bacon', 'Maionese temperada'],
     selo: 'Da casa',
-    destaque: true,
     imagem: foto('hamburguer-pao-escuro-cebola'),
     imagemAlt: 'Hambúrguer de pão escuro com cheddar, cebola caramelizada e bacon',
+    recorte: '/img/recortes/hamburguer-escuro.webp',
   },
   {
     id: 'feitico-verde',
@@ -84,9 +86,9 @@ export const produtos: Produto[] = [
     descricao: 'Pão verde, carne suculenta, queijo derretido escorrendo, queijo empanado crocante e rúcula.',
     preco: 42.9,
     ingredientes: ['Pão verde', 'Carne bovina', 'Queijo derretido', 'Queijo empanado', 'Rúcula'],
-    destaque: true,
     imagem: foto('hamburguer-pao-verde-queijo-empanado'),
     imagemAlt: 'Hambúrguer de pão verde com queijo empanado, queijo derretido e rúcula',
+    recorte: '/img/recortes/hamburguer-verde.webp',
   },
   {
     id: 'caldeirao-vermelho',
@@ -97,6 +99,7 @@ export const produtos: Produto[] = [
     ingredientes: ['Pão vermelho', 'Carne bovina', 'Cheddar', 'Alface crespa'],
     imagem: foto('hamburguer-pao-vermelho'),
     imagemAlt: 'Hambúrguer de pão vermelho com cheddar e alface crespa',
+    recorte: '/img/recortes/hamburguer-vermelho.webp',
   },
   {
     id: 'desfiado-encantado',
@@ -105,6 +108,7 @@ export const produtos: Produto[] = [
     descricao: 'Pão verde recheado com carne desfiada, molho de queijo cremoso e vinagrete fresquinho.',
     preco: 38.9,
     ingredientes: ['Pão verde', 'Carne desfiada', 'Molho de queijo', 'Vinagrete'],
+    destaque: true,
     imagem: foto('hamburguer-pao-verde-desfiado'),
     imagemAlt: 'Mãos segurando hambúrguer de pão verde com carne desfiada e molho de queijo',
   },
@@ -118,6 +122,7 @@ export const produtos: Produto[] = [
     selo: 'Para fome grande',
     imagem: foto('hamburguer-ovo-batata-palha'),
     imagemAlt: 'Hambúrguer de pão avermelhado com ovo frito, molho de tomate e batata palha',
+    recorte: '/img/recortes/hamburguer-batata-palha.webp',
   },
   {
     id: 'combo-feiticeiro',
@@ -142,6 +147,7 @@ export const produtos: Produto[] = [
     categoria: 'shakes',
     nome: 'Shake Caramelo Dourado',
     descricao: 'Shake cremoso com calda de caramelo, chantilly, biscoito e chocolate branco.',
+    destaque: true,
     preco: 26.9,
     imagem: foto('shake-caramelo'),
     imagemAlt: 'Shake de baunilha com calda de caramelo, chantilly, biscoito e chocolate branco',
@@ -192,3 +198,11 @@ export const produtos: Produto[] = [
     imagemAlt: 'Caneca em formato de caveira com bebida dourada, espuma e uma tira de bacon',
   },
 ]
+
+/** Produto da abertura (precisa ter `recorte`). */
+export const PRODUTO_ABERTURA = 'feitico-verde'
+
+/** Os três produtos da vitrine interativa “Universo do Beco” (precisam ter `recorte`). */
+export const VITRINE = ['pocao-defumada', 'caldeirao-vermelho', 'lua-de-fogo']
+
+export const buscarProduto = (id: string) => produtos.find((p) => p.id === id)

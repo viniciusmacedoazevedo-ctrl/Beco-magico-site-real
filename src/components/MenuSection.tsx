@@ -1,5 +1,6 @@
-import { useRef, useState, type KeyboardEvent } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { categorias, produtos, type CategoriaId, type Produto } from '../data/cardapio'
+import { EVENTO_MOSTRAR_PRODUTO } from '../lib/eventos'
 import { AvisoDemonstrativo } from './AvisoDemonstrativo'
 import { ProductCard } from './ProductCard'
 import './MenuSection.css'
@@ -14,7 +15,34 @@ const categoriasComItens = categorias.filter((c) => produtos.some((p) => p.categ
 export function MenuSection({ onAbrir }: Props) {
   const [ativa, setAtiva] = useState<CategoriaId>(categoriasComItens[0]?.id ?? 'hamburgueres')
   const abasRef = useRef<(HTMLButtonElement | null)[]>([])
+  const [chamado, setChamado] = useState<string | null>(null)
   const itens = produtos.filter((p) => p.categoria === ativa)
+
+  // Outras seções (ex.: a vitrine) podem pedir para mostrar um produto aqui
+  useEffect(() => {
+    const aoPedir = (e: Event) => {
+      const id = (e as CustomEvent<string>).detail
+      const produto = produtos.find((p) => p.id === id)
+      if (!produto) return
+      setAtiva(produto.categoria)
+      setChamado(id)
+    }
+    window.addEventListener(EVENTO_MOSTRAR_PRODUTO, aoPedir)
+    return () => window.removeEventListener(EVENTO_MOSTRAR_PRODUTO, aoPedir)
+  }, [])
+
+  useEffect(() => {
+    if (!chamado) return
+    const el = document.getElementById(`produto-${chamado}`)
+    el?.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    el?.classList.add('produto--chamado')
+    el?.querySelector<HTMLButtonElement>('.produto-abrir')?.focus({ preventScroll: true })
+    const t = window.setTimeout(() => {
+      el?.classList.remove('produto--chamado')
+      setChamado(null)
+    }, 2300)
+    return () => window.clearTimeout(t)
+  }, [chamado, ativa])
 
   // Navegação por setas entre as abas (padrão WAI-ARIA)
   const aoTeclar = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -74,7 +102,7 @@ export function MenuSection({ onAbrir }: Props) {
           <ul className="cardapio-lista" role="list" key={ativa}>
             {itens.map((p, i) => (
               <li key={p.id} style={{ '--i': i } as React.CSSProperties}>
-                <ProductCard produto={p} onAbrir={onAbrir} />
+                <ProductCard produto={p} id={`produto-${p.id}`} onAbrir={onAbrir} />
               </li>
             ))}
           </ul>

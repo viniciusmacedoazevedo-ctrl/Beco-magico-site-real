@@ -76,6 +76,24 @@
   animation: halo-respira 9s var(--ease-suave) infinite;
 }
 
+.assustador-lua {
+  position: absolute;
+  right: 6%;
+  top: 4%;
+  width: min(46vw, 620px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 38% 36%, rgb(255 214 150 / 0.5), transparent 46%),
+    radial-gradient(circle, rgb(242 136 58 / 0.42) 0%, rgb(217 98 28 / 0.22) 45%, rgb(107 52 163 / 0.1) 62%, transparent 70%);
+  filter: blur(2px);
+}
+
+.assustador-morcegos {
+  z-index: 0;
+  inset: 0 0 45%;
+}
+
 .assustador-nevoa {
   position: absolute;
   inset: auto -10% 0;
@@ -88,6 +106,8 @@
 }
 
 .assustador-grade {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
   grid-template-areas:

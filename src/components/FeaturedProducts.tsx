@@ -22,7 +22,7 @@ export function FeaturedProducts({ onAbrir }: Props) {
             </h2>
           </div>
           <div className="destaques-lateral">
-            <p className="texto-apoio">Os hambúrgueres que fazem o caminho até o beco valer a pena.</p>
+            <p className="texto-apoio">Do hambúrguer ao shake: os pedidos que fazem o caminho até o beco valer a pena.</p>
             <AvisoDemonstrativo />
           </div>
         </header>

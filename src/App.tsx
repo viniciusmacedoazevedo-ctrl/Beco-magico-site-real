@@ -24,7 +24,7 @@ export default function App() {
       <Header />
       <main id="conteudo">
         <HeroSection />
-        <Transicao />
+        <Transicao onAbrir={setProdutoAberto} />
         <FeaturedProducts onAbrir={setProdutoAberto} />
         <SectionAssustador />
         <MenuSection onAbrir={setProdutoAberto} />

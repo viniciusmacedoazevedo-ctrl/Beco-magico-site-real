@@ -68,8 +68,9 @@
 }
 
 .cardapio-aba[aria-selected='true'] {
-  background: var(--cor-laranja);
+  background: linear-gradient(180deg, var(--cor-laranja-claro), var(--cor-laranja));
   color: #160b04;
+  box-shadow: 0 8px 22px -10px var(--cor-laranja-brilho);
 }
 
 .cardapio-aba-total {
@@ -93,8 +94,8 @@
 
 .cardapio-lista {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
 }
 
 .cardapio-lista > li {
@@ -115,6 +116,12 @@
 }
 
 @media (max-width: 1000px) {
+  .cardapio-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
   .cardapio-lista {
     grid-template-columns: minmax(0, 1fr);
   }

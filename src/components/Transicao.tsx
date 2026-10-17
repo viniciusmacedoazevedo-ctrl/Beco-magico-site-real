@@ -1,6 +1,9 @@
-import { imagens } from '../data/marca'
+import { useState, type KeyboardEvent } from 'react'
+import { buscarProduto, VITRINE, type Produto } from '../data/cardapio'
 import { caminhoGotejamento } from '../lib/gotejamento'
-import { Foto } from './Foto'
+import { mostrarNoCardapio } from '../lib/eventos'
+import { formatarPreco } from '../lib/formatar'
+import { IconeSeta } from './Icones'
 import './Transicao.css'
 
 const borda = caminhoGotejamento([
@@ -13,56 +16,114 @@ const borda = caminhoGotejamento([
   { x: 1310, w: 30, h: 84 },
 ])
 
-const passos = [
-  { num: '01', titulo: 'Entre no beco', texto: 'A porta de madeira entalhada é o começo da experiência.' },
-  { num: '02', titulo: 'Escolha seu feitiço', texto: 'Do clássico ao mais ousado: cada hambúrguer tem a sua personalidade.' },
-  { num: '03', titulo: 'Prove a magia', texto: 'A primeira mordida explica o resto. Sem truques, só sabor.' },
-]
+const posicoes = ['centro', 'direita', 'esquerda'] as const
 
-const molduras = [0, 1, 2]
+interface Props {
+  onAbrir: (produto: Produto) => void
+}
 
-export function Transicao() {
+/** Vitrine “Universo do Beco”: três hambúrgueres recortados; o selecionado vem para a frente. */
+export function Transicao({ onAbrir }: Props) {
+  const itens = VITRINE.map(buscarProduto).filter((p): p is Produto => Boolean(p?.recorte))
+  const [ativo, setAtivo] = useState(0)
+  const selecionado = itens[ativo]
+
+  if (itens.length === 0) return null
+
+  const posicaoDe = (i: number) => posicoes[(i - ativo + itens.length) % itens.length] ?? 'esquerda'
+
+  const aoTeclar = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return
+    e.preventDefault()
+    const passo = e.key === 'ArrowRight' ? 1 : -1
+    const proximo = (ativo + passo + itens.length) % itens.length
+    setAtivo(proximo)
+    e.currentTarget.querySelector<HTMLButtonElement>(`[data-indice="${proximo}"]`)?.focus()
+  }
+
   return (
-    <section id="universo" className="transicao" aria-labelledby="transicao-titulo">
-      <svg className="transicao-borda" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
+    <section id="universo" className="universo" aria-labelledby="universo-titulo">
+      <svg className="universo-borda" viewBox="0 0 1440 140" preserveAspectRatio="none" aria-hidden="true">
         <path d={borda} />
       </svg>
 
-      <div className="transicao-grade conteiner">
-        <div className="transicao-texto" data-revelar>
+      <div className="conteiner">
+        <header className="universo-cabecalho" data-revelar>
           <p className="sobretitulo">O universo do Beco</p>
-          <h2 id="transicao-titulo" className="titulo-secao">
-            Cada mordida, <br />
-            um <em>feitiço.</em>
+          <h2 id="universo-titulo" className="titulo-secao">
+            Cada mordida, <em>um feitiço.</em>
           </h2>
-          <p className="texto-apoio">
-            No Beco Mágico, o hambúrguer é o protagonista. O resto — a luz, o clima, o mistério — existe para deixar
-            cada pedaço ainda mais memorável.
-          </p>
-        </div>
+          <p className="texto-apoio">Toque em um hambúrguer para trazê-lo para a frente e conhecer o feitiço.</p>
+        </header>
 
-        <div className="transicao-molduras" aria-label="Hambúrgueres do Beco Mágico">
-          {molduras.map((i) => (
-            <figure
-              key={i}
-              className={`moldura moldura--${i + 1}`}
-              data-revelar
-              style={{ '--atraso': `${i * 120}ms` } as React.CSSProperties}
-            >
-              <Foto src={imagens.transicao[i]} alt="Hambúrguer do Beco Mágico" largura={900} altura={1100} />
-            </figure>
-          ))}
-        </div>
+        <div className="vitrine" data-revelar>
+          <span className="vitrine-luz" aria-hidden="true" />
+          <div className="vitrine-palco" role="group" aria-label="Escolha um hambúrguer" onKeyDown={aoTeclar}>
+            {itens.map((p, i) => {
+              const pos = posicaoDe(i)
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  data-indice={i}
+                  data-pos={pos}
+                  className="vitrine-item"
+                  aria-pressed={i === ativo}
+                  aria-controls="vitrine-painel"
+                  tabIndex={i === ativo ? 0 : -1}
+                  onClick={() => setAtivo(i)}
+                >
+                  <span className="vitrine-sombra" aria-hidden="true" />
+                  <img
+                    src={p.recorte}
+                    alt=""
+                    width={1000}
+                    height={850}
+                    loading="lazy"
+                    decoding="async"
+                    draggable={false}
+                  />
+                  <span className="vitrine-rotulo">{p.nome}</span>
+                  <span className="visualmente-oculto">{i === ativo ? ' (selecionado)' : ''}</span>
+                </button>
+              )
+            })}
+          </div>
 
-        <ol className="transicao-passos" role="list">
-          {passos.map((p, i) => (
-            <li key={p.num} data-revelar style={{ '--atraso': `${i * 100}ms` } as React.CSSProperties}>
-              <span className="passo-num">{p.num}</span>
-              <h3>{p.titulo}</h3>
-              <p>{p.texto}</p>
-            </li>
-          ))}
-        </ol>
+          <div id="vitrine-painel" className="vitrine-painel" aria-live="polite">
+            <div className="vitrine-painel-conteudo" key={selecionado.id}>
+              <div className="vitrine-painel-topo">
+                {selecionado.selo && <span className="vitrine-selo">{selecionado.selo}</span>}
+                <span className="vitrine-contador" aria-hidden="true">
+                  {String(ativo + 1).padStart(2, '0')} / {String(itens.length).padStart(2, '0')}
+                </span>
+              </div>
+              <h3 className="vitrine-nome">{selecionado.nome}</h3>
+              <p className="vitrine-descricao">{selecionado.descricao}</p>
+              <div className="vitrine-rodape">
+                <span className="vitrine-preco">{formatarPreco(selecionado.preco)}</span>
+                <div className="vitrine-acoes">
+                  <button type="button" className="botao botao--escuro" onClick={() => onAbrir(selecionado)}>
+                    Ver detalhes
+                  </button>
+                  <button
+                    type="button"
+                    className="botao botao--contorno"
+                    onClick={() => mostrarNoCardapio(selecionado.id)}
+                  >
+                    Ver no cardápio
+                    <IconeSeta />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="vitrine-pontos" aria-hidden="true">
+              {itens.map((p, i) => (
+                <span key={p.id} className={i === ativo ? 'ativo' : ''} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

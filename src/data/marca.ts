@@ -66,25 +66,26 @@ export const marca: Marca = {
  */
 export const imagens = {
   /**
-   * Foto larga da abertura (hambúrguer à direita, área escura à esquerda para o texto).
-   * Quando existe, ela ocupa o fundo da abertura no lugar da composição com o selo.
+   * Hambúrguer recortado (WebP com transparência real) para a composição flutuante.
+   * Recorte gerado a partir das fotos fornecidas.
    */
-  heroFundo: {
-    grande: '/img/hero.webp',
-    media: '/img/hero-1200.webp',
-    largura: 2000,
-    altura: 1116,
-  } as { grande: string; media: string; largura: number; altura: number } | null,
-  /** Hambúrguer recortado (PNG/WebP transparente, ~1600px) para a composição flutuante. Opcional. */
-  heroHamburguer: null as string | null,
+  heroHamburguer: {
+    src: '/img/recortes/hamburguer-verde.webp',
+    largura: 1400,
+    altura: 1264,
+    /** pontos (em % da imagem) onde o queijo escorre — de onde as gotas caem */
+    gotas: [
+      { x: 18.5, y: 95 },
+      { x: 74, y: 97 },
+    ],
+  } as {
+    src: string
+    largura: number
+    altura: number
+    gotas: { x: number; y: number }[]
+  } | null,
   /** Hambúrguer em iluminação dramática para a seção “Saborosamente assustador”. */
-  tematica: '/img/produtos/hamburguer-pao-verde-queijo-empanado.webp' as string | null,
-  /** Composição de hambúrgueres para a seção logo após a abertura (até 3). */
-  transicao: [
-    '/img/produtos/hamburguer-pao-verde-desfiado.webp',
-    '/img/produtos/hamburguer-bacon-cheddar.webp',
-    '/img/produtos/hamburguer-ovo-batata-palha.webp',
-  ] as string[],
+  tematica: '/img/produtos/combo-hamburguer-e-pocao.webp' as string | null,
   /** Foto real da fachada (fornecida pelo estabelecimento). */
   fachada: {
     webp: '/img/fachada.webp',

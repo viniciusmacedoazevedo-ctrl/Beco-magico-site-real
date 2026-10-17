@@ -1,13 +1,31 @@
 import { useEffect, useRef } from 'react'
-import { imagens, marca } from '../data/marca'
+import { marca } from '../data/marca'
 import { prefereMenosMovimento } from '../hooks/useRolagem'
+import { Morcegos, PoeiraMagica, type Grao, type Morcego } from './Atmosfera'
 import { HeroBurger } from './HeroBurger'
-import { IconeSeta, IconeSetaBaixo } from './Icones'
+import { IconeLocal, IconeRelogio, IconeSeta, IconeSetaBaixo } from './Icones'
 import './HeroSection.css'
+
+const bando: Morcego[] = [
+  { y: 14, t: 46, d: 38, a: -6, p: 2, x: 62 },
+  { y: 22, t: 28, d: 52, a: -30, p: 3, x: 80, volta: true },
+  { y: 9, t: 22, d: 60, a: -12, p: 3, x: 40 },
+  { y: 30, t: 64, d: 30, a: -21, p: 1, x: 88, volta: true },
+]
+
+const graos: Grao[] = [
+  { x: 56, y: 78, c: 'o', d: 7, a: 0 },
+  { x: 64, y: 70, c: 'l', d: 9, a: 2.5 },
+  { x: 72, y: 82, c: 'r', d: 8, a: 1.2, t: 4 },
+  { x: 81, y: 74, c: 'o', d: 10, a: 4 },
+  { x: 90, y: 80, c: 'l', d: 7.5, a: 5.5, t: 2 },
+  { x: 60, y: 60, c: 'r', d: 11, a: 6 },
+  { x: 86, y: 58, c: 'o', d: 9.5, a: 3.2, t: 2 },
+  { x: 48, y: 86, c: 'l', d: 8.5, a: 7 },
+]
 
 export function HeroSection() {
   const secaoRef = useRef<HTMLElement>(null)
-  const fundo = imagens.heroFundo
 
   // Parallax leve: o ponteiro e a rolagem alimentam variáveis CSS (--mx, --my, --rolagem)
   useEffect(() => {
@@ -58,63 +76,72 @@ export function HeroSection() {
     }
   }, [])
 
+  const atraso = (ms: number) => ({ '--atraso': `${ms}ms` }) as React.CSSProperties
+  const horario = marca.horarios?.[0]
+
   return (
-    <section id="inicio" className={`hero ${fundo ? 'hero--foto' : ''}`} ref={secaoRef} aria-labelledby="hero-titulo">
+    <section id="inicio" className="hero" ref={secaoRef} aria-labelledby="hero-titulo">
       <div className="hero-fundo" aria-hidden="true">
         <span className="hero-luz hero-luz--laranja" />
         <span className="hero-luz hero-luz--roxa" />
-        <span className="hero-grade-linhas" />
+        <span className="hero-nevoa" />
       </div>
+      <Morcegos bando={bando} className="hero-morcegos" />
+      <PoeiraMagica graos={graos} className="hero-poeira" />
 
       <div className="hero-grade conteiner">
         <div className="hero-topo">
-          <p className="sobretitulo hero-entra" style={{ '--atraso': '60ms' } as React.CSSProperties}>
-            Hamburgueria {marca.nome}
+          <p className="hero-marca hero-entra" style={atraso(40)}>
+            <span className="hero-marca-nome">{marca.nome}</span>
+            <span className="hero-marca-sep" aria-hidden="true" />
+            <span className="hero-marca-tipo">Hamburgueria em Natal</span>
           </p>
           <h1 id="hero-titulo" className="hero-titulo">
-            <span className="hero-linha hero-entra" style={{ '--atraso': '120ms' } as React.CSSProperties}>
+            <span className="hero-linha hero-linha--1 hero-entra" style={atraso(120)}>
               O hambúrguer
             </span>
-            <span className="hero-linha hero-entra" style={{ '--atraso': '200ms' } as React.CSSProperties}>
-              mais <em>mágico</em>
+            <span className="hero-linha hero-linha--2 hero-entra" style={atraso(200)}>
+              <span className="hero-mais">mais</span>
+              <span className="hero-magico">mágico</span>
             </span>
-            <span className="hero-linha hero-entra" style={{ '--atraso': '280ms' } as React.CSSProperties}>
+            <span className="hero-linha hero-linha--3 hero-entra" style={atraso(280)}>
               do Brasil.
             </span>
           </h1>
         </div>
 
-        {fundo ? (
-          <div className="hero-foto">
-            <img
-              src={fundo.grande}
-              srcSet={`${fundo.media} 1200w, ${fundo.grande} ${fundo.largura}w`}
-              sizes="100vw"
-              width={fundo.largura}
-              height={fundo.altura}
-              alt="Hambúrguer de pão vermelho com cheddar derretido sobre pedra escura, ao lado de uma bebida azul soltando fumaça"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </div>
-        ) : (
-          <HeroBurger />
-        )}
+        <HeroBurger />
 
-        <div className="hero-base hero-entra" style={{ '--atraso': '380ms' } as React.CSSProperties}>
+        <div className="hero-base hero-entra" style={atraso(380)}>
           <p className="hero-descricao">
-            Entre no beco, siga o cheiro da chapa e descubra um hambúrguer feito para encantar do primeiro ao último
-            pedaço.
+            Pães coloridos, queijo que escorre e um toque de mistério em cada mordida. Entre no beco e encontre o seu
+            feitiço favorito.
           </p>
           <div className="hero-acoes">
-            <a href="#cardapio" className="botao">
-              Explorar cardápio
+            <a href="#cardapio" className="botao botao--grande">
+              Descobrir o cardápio
               <IconeSeta />
             </a>
-            <a href="#o-beco" className="botao botao--fantasma">
-              Conheça o Beco
+            <a href="#universo" className="botao botao--fantasma botao--grande">
+              Ver os favoritos
             </a>
           </div>
+          {(horario || marca.endereco) && (
+            <ul className="hero-info" role="list">
+              {horario && (
+                <li>
+                  <IconeRelogio />
+                  {horario.dias}, {horario.horas}
+                </li>
+              )}
+              {marca.endereco && (
+                <li>
+                  <IconeLocal />
+                  {marca.endereco.bairro}, {marca.endereco.cidade}
+                </li>
+              )}
+            </ul>
+          )}
         </div>
       </div>
 

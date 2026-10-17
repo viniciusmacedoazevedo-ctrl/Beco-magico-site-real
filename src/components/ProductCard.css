@@ -146,23 +146,26 @@
   padding: var(--esp-6);
 }
 
-/* Variante lista (cardápio): horizontal em telas médias+ */
-@media (min-width: 640px) {
-  .produto--lista {
-    flex-direction: row;
-  }
+/* Chamado a partir da vitrine: pulso de destaque */
+.produto--chamado {
+  animation: produto-chamado 2.2s var(--ease-saida);
+}
 
-  .produto--lista .produto-foto {
-    flex: 0 0 40%;
-    aspect-ratio: auto;
-    min-height: 220px;
+@keyframes produto-chamado {
+  0%,
+  40% {
+    outline-color: var(--cor-laranja-claro);
+    box-shadow:
+      var(--sombra-card),
+      0 0 0 6px rgb(242 136 58 / 0.25),
+      0 30px 60px -20px rgb(217 98 28 / 0.6);
   }
 }
 
 @media (max-width: 639px) {
   .produto-foto,
   .produto--destaque .produto-foto {
-    aspect-ratio: 16 / 11;
+    aspect-ratio: 4 / 3.3;
   }
 }
 
