@@ -1,0 +1,175 @@
+.produto {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--raio-lg);
+  background: linear-gradient(180deg, var(--cor-superficie), var(--cor-grafite));
+  box-shadow: var(--sombra-card);
+  outline: 1px solid var(--cor-borda);
+  outline-offset: -1px;
+  transition:
+    transform var(--dur-media) var(--ease-saida),
+    box-shadow var(--dur-media) var(--ease-saida),
+    outline-color var(--dur-media);
+}
+
+.produto:hover,
+.produto:focus-within {
+  transform: translateY(-6px);
+  outline-color: rgb(242 136 58 / 0.35);
+  box-shadow:
+    var(--sombra-card),
+    0 30px 60px -30px rgb(217 98 28 / 0.45);
+}
+
+.produto-foto {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3.4;
+}
+
+.produto-foto .foto {
+  transition: transform 1.1s var(--ease-saida);
+}
+
+.produto:hover .produto-foto .foto {
+  transform: scale(1.06);
+}
+
+.produto-selo {
+  position: absolute;
+  top: var(--esp-4);
+  left: var(--esp-4);
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--raio-pill);
+  background: var(--cor-ouro);
+  color: #1b1003;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.produto-corpo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--esp-2);
+  padding: var(--esp-5);
+}
+
+.produto-nome {
+  font-family: var(--fonte-display);
+  font-weight: 400;
+  font-size: var(--titulo-sm);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.produto-descricao {
+  color: var(--cor-texto-2);
+  font-size: var(--texto-sm);
+  text-wrap: pretty;
+}
+
+.produto-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  margin-top: auto;
+  padding-top: var(--esp-4);
+}
+
+.produto-preco {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--cor-laranja-claro);
+  font-variant-numeric: tabular-nums;
+}
+
+.produto-preco--pendente {
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  color: var(--cor-texto-3);
+}
+
+.produto-abrir {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: 44px;
+  padding: 0 var(--esp-4);
+  border: 0;
+  border-radius: var(--raio-pill);
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 0 0 1px var(--cor-borda-forte);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-rapida),
+    color var(--dur-rapida),
+    box-shadow var(--dur-rapida);
+}
+
+.produto-abrir svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--dur-media) var(--ease-saida);
+}
+
+.produto-abrir:hover {
+  background: var(--cor-laranja);
+  color: #160b04;
+  box-shadow: none;
+}
+
+.produto-abrir:hover svg {
+  transform: rotate(90deg);
+}
+
+/* Botão cobre o card todo (área de toque maior), mantendo um único foco */
+.produto-abrir::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* Variante destaque: foto mais alta */
+.produto--destaque .produto-foto {
+  aspect-ratio: 4 / 4.4;
+}
+
+.produto--destaque .produto-corpo {
+  padding: var(--esp-6);
+}
+
+/* Chamado a partir da vitrine: pulso de destaque */
+.produto--chamado {
+  animation: produto-chamado 2.2s var(--ease-saida);
+}
+
+@keyframes produto-chamado {
+  0%,
+  40% {
+    outline-color: var(--cor-laranja-claro);
+    box-shadow:
+      var(--sombra-card),
+      0 0 0 6px rgb(242 136 58 / 0.25),
+      0 30px 60px -20px rgb(217 98 28 / 0.6);
+  }
+}
+
+@media (max-width: 639px) {
+  .produto-foto,
+  .produto--destaque .produto-foto {
+    aspect-ratio: 4 / 3.3;
+  }
+}
+
+/* Fotos verticais: mantém o produto (centro-baixo) no recorte */
+.produto-foto .foto {
+  object-position: 50% 62%;
+}

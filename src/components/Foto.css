@@ -1,0 +1,43 @@
+.foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.foto--provisoria {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 55% at 50% 58%, rgb(217 98 28 / 0.32), transparent 70%),
+    radial-gradient(45% 40% at 78% 18%, rgb(107 52 163 / 0.28), transparent 70%),
+    linear-gradient(160deg, #1d1922, #0d0b10);
+}
+
+.foto-anel {
+  position: absolute;
+  width: min(78%, 260px);
+  aspect-ratio: 1;
+  fill: none;
+  stroke: rgb(225 169 59 / 0.28);
+  stroke-width: 0.8;
+}
+
+.foto-monograma {
+  position: relative;
+  font-family: var(--fonte-marca);
+  font-size: clamp(2.2rem, 1.6rem + 2vw, 3.4rem);
+  color: rgb(225 169 59 / 0.55);
+}
+
+.foto-legenda {
+  position: absolute;
+  bottom: 12%;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cor-texto-3);
+}

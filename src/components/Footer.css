@@ -1,0 +1,72 @@
+.rodape {
+  padding-top: var(--esp-8);
+  background: #060508;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.rodape-grade {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--esp-7);
+  padding-bottom: var(--esp-7);
+}
+
+.rodape-marca {
+  display: grid;
+  justify-items: start;
+  gap: var(--esp-4);
+}
+
+.rodape-marca p {
+  color: var(--cor-texto-2);
+  font-family: var(--fonte-editorial);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.rodape-info {
+  display: grid;
+  align-content: start;
+  gap: var(--esp-2);
+  color: var(--cor-texto-2);
+}
+
+.rodape-info address {
+  font-style: normal;
+}
+
+.rodape-links {
+  display: grid;
+  gap: var(--esp-2);
+}
+
+.rodape-links a {
+  display: inline-block;
+  padding-block: var(--esp-1);
+  color: var(--cor-texto-2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--dur-rapida);
+}
+
+.rodape-links a:hover {
+  color: var(--cor-laranja-claro);
+}
+
+.rodape-base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  padding-block: var(--esp-5);
+  border-top: 1px solid var(--cor-borda);
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-3);
+}
+
+.rodape-frase {
+  font-family: var(--fonte-display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,131 @@
+.local {
+  padding-block: var(--esp-secao);
+  background: linear-gradient(180deg, var(--cor-preto), var(--cor-noite));
+  border-top: 1px solid var(--cor-borda);
+}
+
+.local-cabecalho {
+  display: grid;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-7);
+}
+
+.local-grade--mapa {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--esp-5);
+}
+
+.local-cartoes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--esp-4);
+}
+
+.local-grade--mapa .local-cartoes {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.info-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+  padding: var(--esp-6);
+  border-radius: var(--raio-lg);
+  background: var(--cor-grafite);
+  box-shadow: inset 0 0 0 1px var(--cor-borda);
+}
+
+.info-icone {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--esp-2);
+  border-radius: 50%;
+  background: rgb(217 98 28 / 0.12);
+  color: var(--cor-laranja-claro);
+}
+
+.info-icone svg {
+  width: 22px;
+  height: 22px;
+}
+
+.info-cartao h3 {
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cor-texto-3);
+}
+
+.info-valor {
+  font-size: var(--texto-lg);
+  font-weight: 600;
+}
+
+.info-valor address {
+  font-style: normal;
+}
+
+.info-valor a {
+  text-decoration-color: rgb(242 136 58 / 0.5);
+  text-underline-offset: 4px;
+}
+
+.info-valor a:hover {
+  color: var(--cor-laranja-claro);
+}
+
+.info-links {
+  display: grid;
+  gap: var(--esp-1);
+}
+
+.info-horarios div {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.info-horarios dd {
+  margin: 0;
+  color: var(--cor-texto-2);
+}
+
+.info-pendente {
+  color: var(--cor-texto-3);
+  font-weight: 500;
+  font-size: var(--texto-md);
+}
+
+.info-cartao .botao {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.local-mapa {
+  width: 100%;
+  min-height: 380px;
+  border: 0;
+  border-radius: var(--raio-lg);
+  background: var(--cor-grafite);
+  filter: grayscale(0.4) contrast(1.05);
+}
+
+@media (max-width: 1100px) {
+  .local-cartoes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .local-grade--mapa {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .local-cartoes,
+  .local-grade--mapa .local-cartoes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

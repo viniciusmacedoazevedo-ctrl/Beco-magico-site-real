@@ -1,0 +1,137 @@
+.cardapio {
+  padding-block: var(--esp-secao);
+  background: linear-gradient(180deg, var(--cor-preto), var(--cor-noite));
+}
+
+.cardapio-cabecalho {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--esp-4);
+  margin-bottom: var(--esp-7);
+}
+
+.cardapio-cabecalho .aviso-demo {
+  margin-top: var(--esp-2);
+}
+
+.cardapio-abas {
+  position: sticky;
+  top: calc(var(--altura-header) + var(--esp-2));
+  z-index: 5;
+  display: flex;
+  gap: var(--esp-2);
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto var(--esp-7);
+  padding: var(--esp-2);
+  border-radius: var(--raio-pill);
+  background: rgb(24 21 28 / 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 0 0 1px var(--cor-borda),
+    0 20px 40px -20px rgb(0 0 0 / 0.8);
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.cardapio-abas::-webkit-scrollbar {
+  display: none;
+}
+
+.cardapio-aba {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  min-height: 44px;
+  padding: 0 var(--esp-5);
+  border: 0;
+  border-radius: var(--raio-pill);
+  background: transparent;
+  color: var(--cor-texto-2);
+  font-weight: 700;
+  font-size: var(--texto-sm);
+  white-space: nowrap;
+  cursor: pointer;
+  scroll-snap-align: center;
+  transition:
+    background-color var(--dur-media) var(--ease-saida),
+    color var(--dur-rapida);
+}
+
+.cardapio-aba:hover {
+  color: var(--cor-texto);
+  background: rgb(255 255 255 / 0.05);
+}
+
+.cardapio-aba[aria-selected='true'] {
+  background: linear-gradient(180deg, var(--cor-laranja-claro), var(--cor-laranja));
+  color: #160b04;
+  box-shadow: 0 8px 22px -10px var(--cor-laranja-brilho);
+}
+
+.cardapio-aba-total {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding-inline: 0.35rem;
+  border-radius: var(--raio-pill);
+  background: rgb(255 255 255 / 0.08);
+  font-size: 0.7rem;
+}
+
+.cardapio-aba[aria-selected='true'] .cardapio-aba-total {
+  background: rgb(0 0 0 / 0.16);
+}
+
+#cardapio-painel:focus-visible {
+  outline-offset: 12px;
+}
+
+.cardapio-lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.cardapio-lista > li {
+  display: flex;
+  animation: item-entra 600ms var(--ease-saida) both;
+  animation-delay: calc(var(--i) * 70ms);
+}
+
+.cardapio-lista > li > .produto {
+  flex: 1;
+}
+
+@keyframes item-entra {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@media (max-width: 1000px) {
+  .cardapio-lista {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .cardapio-lista {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .cardapio-abas {
+    width: auto;
+    margin-inline: calc(var(--gutter) * -1);
+    border-radius: 0;
+    padding-inline: var(--gutter);
+  }
+}

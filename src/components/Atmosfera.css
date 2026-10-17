@@ -1,0 +1,157 @@
+/* ---------- Morcegos ---------- */
+.morcegos {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* A camada inteira atravessa a largura da seção (translate em % da própria largura) */
+.morcego {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: var(--t);
+  animation: morcego-voa var(--d) linear var(--a) infinite;
+  will-change: transform;
+}
+
+.morcego--volta {
+  animation-direction: reverse;
+}
+
+.morcego-onda {
+  display: block;
+  width: var(--t);
+  animation: morcego-onda calc(var(--d) / 5) var(--ease-suave) var(--a) infinite alternate;
+}
+
+.morcego svg {
+  width: 100%;
+  height: auto;
+  fill: #050407;
+  transform-origin: 50% 40%;
+  animation: morcego-bate 0.42s ease-in-out infinite alternate;
+}
+
+.morcego--volta svg {
+  scale: -1 1;
+}
+
+/* Profundidade: longe = menor contraste e desfocado */
+/* Silhuetas “contra a luz”: contorno quente para aparecerem no fundo escuro */
+.morcego--p1 svg {
+  filter: drop-shadow(0 0 1px rgb(255 170 90 / 0.85)) drop-shadow(0 0 12px rgb(242 136 58 / 0.45));
+}
+
+.morcego--p2 {
+  opacity: 0.7;
+}
+
+.morcego--p2 svg {
+  filter: drop-shadow(0 0 1px rgb(200 150 255 / 0.7)) drop-shadow(0 0 10px rgb(124 63 190 / 0.5)) blur(0.4px);
+  animation-duration: 0.36s;
+}
+
+.morcego--p3 {
+  opacity: 0.45;
+}
+
+.morcego--p3 svg {
+  filter: drop-shadow(0 0 6px rgb(124 63 190 / 0.6)) blur(1.2px);
+  animation-duration: 0.3s;
+}
+
+@keyframes morcego-voa {
+  from {
+    transform: translateX(-8%);
+  }
+  to {
+    transform: translateX(108%);
+  }
+}
+
+@keyframes morcego-onda {
+  from {
+    transform: translateY(-22px);
+  }
+  to {
+    transform: translateY(22px);
+  }
+}
+
+@keyframes morcego-bate {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0.38);
+  }
+}
+
+/* ---------- Poeira mágica ---------- */
+.poeira {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.grao {
+  position: absolute;
+  width: var(--t);
+  height: var(--t);
+  border-radius: 50%;
+  opacity: 0;
+  animation: grao-brilha var(--d) var(--ease-suave) var(--a) infinite;
+}
+
+.grao--o {
+  background: #ffd98a;
+  box-shadow: 0 0 8px 2px rgb(225 169 59 / 0.75);
+}
+
+.grao--l {
+  background: var(--cor-laranja-claro);
+  box-shadow: 0 0 10px 2px rgb(242 136 58 / 0.7);
+}
+
+.grao--r {
+  background: #c89bff;
+  box-shadow: 0 0 10px 2px rgb(124 63 190 / 0.8);
+}
+
+@keyframes grao-brilha {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  25% {
+    opacity: 0.95;
+  }
+  60% {
+    opacity: 0.5;
+    transform: translate(10px, -40px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-6px, -90px) scale(0.4);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .morcego,
+  .morcego-onda,
+  .morcego svg {
+    animation: none !important;
+  }
+
+  .morcego {
+    transform: translateX(var(--xe));
+  }
+
+  .grao {
+    animation: none !important;
+    opacity: 0.6;
+  }
+}

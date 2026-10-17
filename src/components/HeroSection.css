@@ -1,0 +1,437 @@
+.hero {
+  --mx: 0;
+  --my: 0;
+  --rolagem: 0;
+  position: relative;
+  min-height: max(100svh, 760px);
+  padding-top: var(--altura-header);
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--cor-preto);
+}
+
+/* ---------- Fundo ---------- */
+.hero-fundo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.hero-luz {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.hero-luz--laranja {
+  width: 64vmax;
+  height: 64vmax;
+  right: -14vmax;
+  top: 52%;
+  translate: calc(var(--mx) * -18px) calc(-50% + var(--my) * -14px);
+  background: radial-gradient(closest-side, rgb(217 98 28 / 0.26), rgb(217 98 28 / 0.07) 55%, transparent);
+}
+
+.hero-luz--roxa {
+  width: 60vmax;
+  height: 60vmax;
+  left: -26vmax;
+  top: -28vmax;
+  background: radial-gradient(closest-side, rgb(107 52 163 / 0.3), transparent);
+}
+
+.hero-nevoa {
+  position: absolute;
+  inset: auto -10% -6% 30%;
+  height: 34%;
+  background:
+    radial-gradient(40% 60% at 30% 80%, rgb(107 52 163 / 0.22), transparent 70%),
+    radial-gradient(40% 60% at 75% 90%, rgb(217 98 28 / 0.14), transparent 70%);
+  filter: blur(30px);
+  animation: nevoa-deriva 26s var(--ease-suave) infinite alternate;
+}
+
+.hero-morcegos {
+  z-index: -1;
+  inset: 2% 0 55% 40%;
+}
+
+.hero-poeira {
+  z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 18%;
+  z-index: -1;
+  background: linear-gradient(to bottom, transparent, var(--cor-preto));
+}
+
+/* ---------- Grade ---------- */
+.hero-grade {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  grid-template-areas:
+    'topo visual'
+    'base visual';
+  grid-template-rows: auto 1fr;
+  align-content: center;
+  column-gap: clamp(0.5rem, 2vw, 2rem);
+  padding-block: clamp(1.5rem, 4vh, 3rem) clamp(4.5rem, 9vh, 6rem);
+}
+
+.hero-topo {
+  grid-area: topo;
+  align-self: end;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-base {
+  grid-area: base;
+  align-self: start;
+  position: relative;
+  z-index: 2;
+  padding-top: var(--esp-6);
+}
+
+/* 1. Identidade */
+.hero-marca {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--esp-3) var(--esp-4);
+}
+
+.hero-marca-nome {
+  font-family: var(--fonte-marca);
+  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem);
+  line-height: 1;
+  color: var(--cor-ouro);
+  text-shadow: 0 0 24px rgb(225 169 59 / 0.35);
+}
+
+.hero-marca-sep {
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cor-ouro), transparent);
+}
+
+.hero-marca-tipo {
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--cor-texto-2);
+}
+
+/* 2. Headline */
+.hero-titulo {
+  margin-top: var(--esp-5);
+  font-weight: 400;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.hero-linha {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-linha--1,
+.hero-linha--3 {
+  font-family: var(--fonte-display);
+  font-size: clamp(2.6rem, 1rem + 5.4vw, 6.8rem);
+  letter-spacing: 0.005em;
+}
+
+.hero-linha--2 {
+  display: flex;
+  align-items: center;
+  gap: 0.22em;
+  margin-block: 0.08em -0.06em;
+}
+
+.hero-mais {
+  font-family: var(--fonte-editorial);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 0.8rem + 3vw, 3.8rem);
+  line-height: 1;
+  text-transform: none;
+  color: var(--cor-texto-2);
+  translate: 0 0.12em;
+}
+
+.hero-magico {
+  position: relative;
+  font-family: var(--fonte-marca);
+  font-weight: 800;
+  font-size: clamp(5.4rem, 1.4rem + 9vw, 11.2rem);
+  line-height: 0.82;
+  text-transform: none;
+  letter-spacing: -0.005em;
+  padding: 0.04em 0.1em 0.12em 0;
+  background: linear-gradient(176deg, #fff0c7 4%, #f3c25c 30%, var(--cor-laranja-claro) 60%, var(--cor-laranja) 86%, #a8420c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 1px rgb(255 220 160 / 0.5)) drop-shadow(0 12px 34px rgb(217 98 28 / 0.45));
+}
+
+/* Faíscas ao redor de “Mágico” (piscam devagar, poucas vezes por minuto) */
+.hero-faisca {
+  position: absolute;
+  fill: #ffe7b5;
+  filter: drop-shadow(0 0 6px rgb(255 190 110 / 0.9));
+  opacity: 0;
+  animation: faisca-pisca 6s var(--ease-suave) infinite;
+}
+
+.hero-faisca--1 {
+  width: 0.16em;
+  top: 0.02em;
+  right: 0.02em;
+}
+
+.hero-faisca--2 {
+  width: 0.09em;
+  top: 0.32em;
+  right: -0.08em;
+  animation-delay: 2s;
+}
+
+.hero-faisca--3 {
+  width: 0.1em;
+  bottom: 0.1em;
+  left: -0.12em;
+  animation-delay: 4s;
+  fill: #e2c6ff;
+  filter: drop-shadow(0 0 6px rgb(170 100 255 / 0.9));
+}
+
+@keyframes faisca-pisca {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  12% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+  26% {
+    opacity: 0;
+    transform: scale(0.4) rotate(90deg);
+  }
+}
+
+.hero-linha--3 {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(246 239 230 / 0.85);
+}
+
+/* 3–5. Descrição e ações */
+.hero-descricao {
+  max-width: 38ch;
+  font-size: var(--texto-lg);
+  color: var(--cor-texto-2);
+  text-wrap: pretty;
+}
+
+.hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--esp-4) var(--esp-6);
+  margin-top: var(--esp-6);
+}
+
+.hero-reservar {
+  min-height: 60px;
+}
+
+.hero-link {
+  position: relative;
+  padding-block: var(--esp-2);
+  font-weight: 700;
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.hero-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 2px;
+  height: 1px;
+  background: rgb(246 239 230 / 0.4);
+  transform-origin: right;
+  transition:
+    transform var(--dur-media) var(--ease-saida),
+    background-color var(--dur-rapida);
+}
+
+.hero-link:hover::after {
+  background: var(--cor-laranja-claro);
+  animation: sublinha 600ms var(--ease-saida);
+}
+
+@keyframes sublinha {
+  0% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  45% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  46% {
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.hero-base .hero-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2) var(--esp-5);
+  margin-top: var(--esp-6);
+  font-size: var(--texto-sm);
+  color: var(--cor-texto-3);
+}
+
+.hero-info li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.hero-info svg {
+  width: 16px;
+  height: 16px;
+  color: var(--cor-laranja-claro);
+}
+
+.hero-rolar {
+  position: absolute;
+  left: 50%;
+  bottom: var(--esp-5);
+  translate: -50% 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-2) var(--esp-3);
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cor-texto-3);
+  text-decoration: none;
+  transition: color var(--dur-rapida);
+}
+
+.hero-rolar svg {
+  width: 16px;
+  height: 16px;
+  animation: rolar-pulsa 2.4s var(--ease-suave) infinite;
+}
+
+.hero-rolar:hover {
+  color: var(--cor-texto);
+}
+
+/* ---------- Entrada ---------- */
+.hero-entra {
+  animation: hero-entra 1s var(--ease-saida) both;
+  animation-delay: var(--atraso, 0ms);
+}
+
+@keyframes hero-entra {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes rolar-pulsa {
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes nevoa-deriva {
+  to {
+    transform: translateX(8%);
+  }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1100px) and (min-width: 901px) {
+  .hero-magico {
+    font-size: clamp(4.6rem, 1rem + 10vw, 9.4rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-grade {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'topo'
+      'visual'
+      'base';
+    grid-template-rows: auto;
+    padding-block: var(--esp-5) var(--esp-8);
+  }
+
+  .hero-linha--1,
+  .hero-linha--3 {
+    font-size: clamp(2.4rem, 11.4vw, 4.6rem);
+  }
+
+  .hero-mais {
+    font-size: clamp(1.5rem, 6.4vw, 2.6rem);
+  }
+
+  .hero-magico {
+    font-size: clamp(4.8rem, 25vw, 9.4rem);
+  }
+
+  .hero-base {
+    padding-top: 0;
+  }
+
+  .hero-rolar {
+    display: none;
+  }
+
+  .hero-morcegos {
+    inset: 32% 0 34% 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-acoes .botao-pedir {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+
+  .hero-acoes .hero-reservar {
+    flex: 1 1 100%;
+  }
+}

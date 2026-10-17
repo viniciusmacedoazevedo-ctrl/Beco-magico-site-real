@@ -1,0 +1,193 @@
+.beco {
+  position: relative;
+  padding-block: var(--esp-secao);
+  background:
+    radial-gradient(50% 60% at 20% 55%, rgb(217 98 28 / 0.12), transparent 70%),
+    radial-gradient(40% 50% at 90% 10%, rgb(107 52 163 / 0.14), transparent 70%),
+    var(--cor-preto);
+  overflow: clip;
+}
+
+/* Palavra gigante vazada ao fundo, como textura tipográfica */
+.beco-palavra {
+  position: absolute;
+  right: -2vw;
+  bottom: -0.18em;
+  font-family: var(--fonte-marca);
+  font-size: clamp(10rem, 28vw, 26rem);
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(225 169 59 / 0.1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.beco-grade {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
+}
+
+/* ---------- Janela com a fachada ---------- */
+.beco-janela {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  justify-self: center;
+  padding-top: 8%;
+}
+
+.beco-foto {
+  position: relative;
+  overflow: hidden;
+  /* topo em arco, como a porta de um beco */
+  border-radius: 999px 999px var(--raio-lg) var(--raio-lg) / 46% 46% var(--raio-lg) var(--raio-lg);
+  aspect-ratio: 476 / 360;
+  box-shadow:
+    0 0 0 1px rgb(225 169 59 / 0.28),
+    0 0 90px -20px rgb(217 98 28 / 0.45),
+    var(--sombra-flutuante);
+  isolation: isolate;
+}
+
+.beco-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 70%;
+  /* “noite”: menos brilho do céu de fim de tarde, mais contraste e calor */
+  filter: brightness(0.82) contrast(1.12) saturate(1.1) sepia(0.12);
+  transform: scale(1.04);
+  animation: camera-lenta 22s var(--ease-suave) infinite alternate;
+}
+
+/* Luz quente saindo da porta */
+.beco-porta-luz {
+  position: absolute;
+  left: 50%;
+  bottom: 2%;
+  width: 46%;
+  height: 52%;
+  translate: -50% 0;
+  background: radial-gradient(50% 55% at 50% 70%, rgb(255 150 60 / 0.5), rgb(217 98 28 / 0.18) 55%, transparent 75%);
+  mix-blend-mode: screen;
+  animation: porta-pulsa 5s var(--ease-suave) infinite;
+}
+
+.beco-vinheta {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgb(20 10 30 / 0.55), transparent 35%),
+    radial-gradient(120% 90% at 50% 60%, transparent 55%, rgb(5 4 7 / 0.75));
+}
+
+.beco-nevoa {
+  position: absolute;
+  inset: auto -10% -6%;
+  height: 30%;
+  background:
+    radial-gradient(40% 70% at 25% 100%, rgb(124 63 190 / 0.32), transparent 70%),
+    radial-gradient(40% 70% at 75% 100%, rgb(255 255 255 / 0.1), transparent 70%);
+  filter: blur(14px);
+  animation: nevoa-deriva 20s var(--ease-suave) infinite alternate;
+}
+
+.beco-morcegos {
+  inset: 0 -6% 60%;
+  z-index: 2;
+}
+
+/* Cantoneiras douradas */
+.beco-canto {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-color: rgb(225 169 59 / 0.55);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.beco-canto--1 {
+  left: -14px;
+  bottom: 22px;
+  border-width: 0 0 1px 1px;
+}
+
+.beco-canto--2 {
+  right: -14px;
+  bottom: 22px;
+  border-width: 0 1px 1px 0;
+}
+
+.beco-janela figcaption {
+  margin-top: var(--esp-5);
+  text-align: center;
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cor-texto-3);
+}
+
+/* ---------- Texto ---------- */
+.beco-texto {
+  display: grid;
+  gap: var(--esp-5);
+}
+
+.beco-info {
+  display: grid;
+  gap: var(--esp-3);
+  padding: var(--esp-5) 0;
+  border-block: 1px solid var(--cor-borda);
+}
+
+.beco-info li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--esp-3);
+  font-weight: 600;
+}
+
+.beco-info svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--cor-laranja-claro);
+}
+
+.beco-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-3);
+}
+
+@keyframes camera-lenta {
+  to {
+    transform: scale(1.1) translate(-1.5%, -1%);
+  }
+}
+
+@keyframes porta-pulsa {
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@media (max-width: 900px) {
+  .beco-grade {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .beco-canto--1 {
+    left: -8px;
+  }
+
+  .beco-canto--2 {
+    right: -8px;
+  }
+}

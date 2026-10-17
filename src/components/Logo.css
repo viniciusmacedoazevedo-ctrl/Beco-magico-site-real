@@ -1,0 +1,19 @@
+.logo {
+  display: inline-block;
+  flex: none;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  filter: drop-shadow(0 6px 18px rgb(0 0 0 / 0.5));
+}
+
+.logo--md {
+  width: 56px;
+}
+
+.logo--lg {
+  width: clamp(96px, 8vw + 40px, 132px);
+}

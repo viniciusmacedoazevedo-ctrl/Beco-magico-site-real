@@ -1,0 +1,50 @@
+.destaques {
+  position: relative;
+  padding-block: var(--esp-secao);
+  background:
+    radial-gradient(50% 40% at 50% 0%, rgb(107 52 163 / 0.14), transparent 70%),
+    var(--cor-preto);
+}
+
+.destaques-cabecalho {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: end;
+  gap: var(--esp-6);
+  margin-bottom: var(--esp-7);
+}
+
+.destaques-cabecalho .titulo-secao {
+  margin-top: var(--esp-4);
+}
+
+.destaques-lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.destaques-lista > li {
+  display: flex;
+}
+
+.destaques-lista > li > .produto {
+  flex: 1;
+}
+
+/* Card do meio desce um pouco: ritmo editorial */
+@media (min-width: 1001px) {
+  .destaques-lista > li:nth-child(2) {
+    margin-top: var(--esp-7);
+  }
+}
+
+@media (max-width: 1000px) {
+  .destaques-cabecalho {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .destaques-lista {
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  }
+}
