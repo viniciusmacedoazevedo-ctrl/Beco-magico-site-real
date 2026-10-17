@@ -1,0 +1,71 @@
+/* Design system do Beco Mágico — altere a identidade aqui. */
+:root {
+  /* Cores */
+  --cor-preto: #09080b;
+  --cor-noite: #0f0d12;
+  --cor-grafite: #18151c;
+  --cor-superficie: #211d26;
+  --cor-borda: rgb(255 240 225 / 0.09);
+  --cor-borda-forte: rgb(255 240 225 / 0.18);
+
+  --cor-laranja: #d9621c;
+  --cor-laranja-claro: #f2883a;
+  --cor-laranja-brilho: rgb(242 136 58 / 0.55);
+  --cor-ouro: #e1a93b;
+  --cor-roxo: #6b34a3;
+  --cor-roxo-escuro: #2a1340;
+  --cor-roxo-brilho: rgb(124 63 190 / 0.45);
+
+  --cor-creme: #f3eadb;
+  --cor-creme-escuro: #e6d8c1;
+  --cor-tinta: #1a1410;
+
+  --cor-texto: #f6efe6;
+  --cor-texto-2: #b3aaa2;
+  --cor-texto-3: #7f7770;
+
+  /* Tipografia */
+  --fonte-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
+  --fonte-marca: 'Pirata One', 'Old English Text MT', serif;
+  --fonte-editorial: 'Fraunces Variable', 'Georgia', serif;
+  --fonte-texto: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
+
+  --texto-xs: 0.75rem;
+  --texto-sm: 0.875rem;
+  --texto-md: 1rem;
+  --texto-lg: clamp(1.05rem, 0.98rem + 0.3vw, 1.2rem);
+  --titulo-sm: clamp(1.35rem, 1.1rem + 1vw, 1.75rem);
+  --titulo-md: clamp(2.2rem, 1.4rem + 3.4vw, 4.25rem);
+  --titulo-lg: clamp(2.8rem, 1.2rem + 6.6vw, 7.75rem);
+
+  /* Espaçamento */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-5: 1.5rem;
+  --esp-6: 2rem;
+  --esp-7: 3rem;
+  --esp-8: 4.5rem;
+  --esp-secao: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --gutter: clamp(1rem, 0.4rem + 3vw, 3rem);
+  --largura: 1320px;
+
+  /* Forma */
+  --raio-sm: 8px;
+  --raio-md: 16px;
+  --raio-lg: 28px;
+  --raio-pill: 999px;
+
+  --sombra-card: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 24px 48px -24px rgb(0 0 0 / 0.7);
+  --sombra-flutuante: 0 40px 80px -30px rgb(0 0 0 / 0.85);
+
+  /* Movimento */
+  --ease-saida: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-suave: cubic-bezier(0.45, 0, 0.2, 1);
+  --dur-rapida: 180ms;
+  --dur-media: 420ms;
+  --dur-lenta: 900ms;
+
+  --altura-header: 76px;
+}

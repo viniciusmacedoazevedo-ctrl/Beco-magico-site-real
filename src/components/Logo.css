@@ -1,0 +1,27 @@
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--fonte-marca);
+  line-height: 0.82;
+  letter-spacing: 0.01em;
+}
+
+.logo-beco {
+  color: var(--cor-texto);
+  font-size: 1.45em;
+}
+
+.logo-magico {
+  color: var(--cor-ouro);
+  font-size: 1.25em;
+  text-shadow: 0 0 18px rgb(225 169 59 / 0.25);
+}
+
+.logo--md {
+  font-size: 1.15rem;
+}
+
+.logo--lg {
+  font-size: clamp(2rem, 1.4rem + 2vw, 3rem);
+}

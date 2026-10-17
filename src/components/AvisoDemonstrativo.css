@@ -1,0 +1,14 @@
+.aviso-demo {
+  display: inline-block;
+  margin-top: var(--esp-5);
+  padding: var(--esp-2) var(--esp-4);
+  border-radius: var(--raio-sm);
+  border: 1px dashed rgb(225 169 59 / 0.45);
+  background: rgb(225 169 59 / 0.07);
+  color: var(--cor-texto-2);
+  font-size: var(--texto-sm);
+}
+
+.aviso-demo strong {
+  color: var(--cor-ouro);
+}

@@ -1,0 +1,145 @@
+.modal {
+  width: min(960px, calc(100% - 2rem));
+  max-height: calc(100svh - 2rem);
+  padding: 0;
+  border: 0;
+  border-radius: var(--raio-lg);
+  background: var(--cor-grafite);
+  color: var(--cor-texto);
+  box-shadow:
+    0 0 0 1px var(--cor-borda-forte),
+    var(--sombra-flutuante);
+  overflow: hidden;
+}
+
+.modal[open] {
+  animation: modal-entra 480ms var(--ease-saida);
+}
+
+.modal::backdrop {
+  background: rgb(5 4 7 / 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal-conteudo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  max-height: calc(100svh - 2rem);
+}
+
+.modal-foto {
+  min-height: 320px;
+}
+
+.modal-corpo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  overflow-y: auto;
+}
+
+.modal-fechar {
+  position: absolute;
+  top: var(--esp-4);
+  right: var(--esp-4);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 0 0 1px var(--cor-borda-forte);
+  cursor: pointer;
+  transition: background-color var(--dur-rapida);
+}
+
+.modal-fechar:hover {
+  background: rgb(255 255 255 / 0.14);
+}
+
+.modal-fechar svg {
+  width: 20px;
+  height: 20px;
+}
+
+.modal-titulo {
+  padding-right: 3rem;
+  font-family: var(--fonte-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.modal-descricao {
+  color: var(--cor-texto-2);
+  font-size: var(--texto-lg);
+}
+
+.modal-ingredientes h3 {
+  margin-bottom: var(--esp-3);
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cor-texto-3);
+}
+
+.modal-ingredientes ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+}
+
+.modal-ingredientes li {
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--raio-pill);
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 0 0 1px var(--cor-borda);
+  font-size: var(--texto-sm);
+}
+
+.modal-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-4);
+  margin-top: auto;
+  padding-top: var(--esp-5);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.modal-preco {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--cor-laranja-claro);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes modal-entra {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+}
+
+@media (max-width: 720px) {
+  .modal-conteudo {
+    grid-template-columns: minmax(0, 1fr);
+    overflow-y: auto;
+  }
+
+  .modal-foto {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .modal-corpo {
+    overflow: visible;
+  }
+}

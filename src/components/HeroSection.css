@@ -1,0 +1,214 @@
+.hero {
+  --mx: 0;
+  --my: 0;
+  --rolagem: 0;
+  position: relative;
+  min-height: max(100svh, 680px);
+  padding-top: var(--altura-header);
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  isolation: isolate;
+  background: var(--cor-preto);
+}
+
+/* ---------- Fundo ---------- */
+.hero-fundo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-luz {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+
+.hero-luz--laranja {
+  width: 70vmax;
+  height: 70vmax;
+  right: -18vmax;
+  top: 50%;
+  translate: calc(var(--mx) * -18px) calc(-50% + var(--my) * -14px);
+  background: radial-gradient(closest-side, rgb(217 98 28 / 0.3), rgb(217 98 28 / 0.08) 55%, transparent);
+}
+
+.hero-luz--roxa {
+  width: 55vmax;
+  height: 55vmax;
+  left: -24vmax;
+  top: -26vmax;
+  background: radial-gradient(closest-side, rgb(107 52 163 / 0.24), transparent);
+}
+
+/* Linhas finas de “planta” que dão profundidade sem competir com o produto */
+.hero-grade-linhas {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(to right, rgb(255 240 225 / 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 240 225 / 0.035) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(ellipse 70% 60% at 65% 50%, #000 20%, transparent 75%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 22%;
+  z-index: -1;
+  background: linear-gradient(to bottom, transparent, var(--cor-preto));
+}
+
+/* ---------- Grade ---------- */
+.hero-grade {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  grid-template-areas:
+    'topo visual'
+    'base visual';
+  grid-template-rows: auto 1fr;
+  align-content: center;
+  column-gap: clamp(1rem, 3vw, 3rem);
+  padding-block: clamp(2rem, 5vh, 4rem) clamp(4.5rem, 9vh, 6rem);
+}
+
+.hero-topo {
+  grid-area: topo;
+  align-self: end;
+}
+
+.hero-base {
+  grid-area: base;
+  align-self: start;
+  padding-top: var(--esp-6);
+}
+
+.hero-titulo {
+  margin-top: var(--esp-5);
+  font-family: var(--fonte-display);
+  font-weight: 400;
+  font-size: var(--titulo-lg);
+  line-height: 0.93;
+  text-transform: uppercase;
+  letter-spacing: 0.002em;
+}
+
+.hero-linha {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-titulo em {
+  font-family: var(--fonte-editorial);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.035em;
+  padding-right: 0.06em;
+  background: linear-gradient(100deg, var(--cor-ouro), var(--cor-laranja-claro) 45%, var(--cor-laranja));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-descricao {
+  max-width: 40ch;
+  font-size: var(--texto-lg);
+  color: var(--cor-texto-2);
+  text-wrap: pretty;
+}
+
+.hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-3);
+  margin-top: var(--esp-6);
+}
+
+.hero-rolar {
+  position: absolute;
+  left: 50%;
+  bottom: var(--esp-5);
+  translate: -50% 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-2) var(--esp-3);
+  font-size: var(--texto-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cor-texto-3);
+  text-decoration: none;
+  transition: color var(--dur-rapida);
+}
+
+.hero-rolar svg {
+  width: 16px;
+  height: 16px;
+  animation: rolar-pulsa 2.4s var(--ease-suave) infinite;
+}
+
+.hero-rolar:hover {
+  color: var(--cor-texto);
+}
+
+/* ---------- Entrada ---------- */
+.hero-entra {
+  animation: hero-entra 1s var(--ease-saida) both;
+  animation-delay: var(--atraso, 0ms);
+}
+
+@keyframes hero-entra {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes rolar-pulsa {
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .hero-grade {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'topo'
+      'visual'
+      'base';
+    grid-template-rows: auto;
+    padding-block: var(--esp-6) var(--esp-8);
+  }
+
+  .hero-titulo {
+    font-size: clamp(2.7rem, 12.6vw, 5.4rem);
+  }
+
+  .hero-base {
+    padding-top: 0;
+  }
+
+  .hero-rolar {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-acoes .botao {
+    flex: 1 1 100%;
+  }
+}
