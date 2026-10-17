@@ -89,7 +89,7 @@ export const imagens = {
   fachada: {
     webp: '/img/fachada.webp',
     jpg: '/img/fachada.jpg',
-    largura: 715,
-    altura: 364,
+    largura: 476,
+    altura: 300,
   },
 }

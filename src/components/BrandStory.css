@@ -31,7 +31,7 @@
   position: relative;
   width: 100%;
   height: auto;
-  aspect-ratio: 715 / 364;
+  aspect-ratio: 476 / 300;
   object-fit: cover;
   border-radius: var(--raio-lg);
   box-shadow: var(--sombra-flutuante);
